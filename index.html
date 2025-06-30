@@ -4,7 +4,112 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Remixador de Imagens</title>
-  <link rel="stylesheet" href="style.css" /><script src="script.js"></script>
+
+  <style>
+    /* Reset e estilo básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Helvetica Neue', sans-serif;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      width: 100%;
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .controls {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    input[type="file"] {
+      color: #fff;
+      background: transparent;
+      border: 1px solid #333;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #fff;
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    #canvasContainer {
+      margin: 1rem 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+    }
+
+    #canvasContainer canvas {
+      max-width: 95vw;
+      max-height: 70vh;
+      border: 1px solid #333;
+      border-radius: 8px;
+    }
+
+    .status {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    #downloadLink {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #fff;
+      text-decoration: underline;
+      display: none;
+      transition: opacity 0.2s ease;
+    }
+
+    #downloadLink:hover {
+      opacity: 0.7;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -23,6 +128,239 @@
   <!-- Bibliotecas externas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
   <script src="https://unpkg.com/glitch-canvas@1.1.0/dist/glitch-canvas.min.js"></script>
- 
+
+  <!-- Script principal -->
+  <script>
+    let loadedImages = [];
+    let remixReady = false;
+    let cnv;
+    let lastGeneratedImage = null;
+    let highResImage = null;
+
+    function getCanvasSize() {
+      const maxWidth = Math.min(window.innerWidth * 0.9, 800);
+      const maxHeight = Math.min(window.innerHeight * 0.6, 600);
+      const size = Math.min(maxWidth, maxHeight);
+      return size;
+    }
+
+    function setup() {
+      const canvasSize = getCanvasSize();
+      cnv = createCanvas(canvasSize, canvasSize);
+      cnv.parent("canvasContainer");
+      noLoop();
+      background(20);
+      fill(40);
+      noStroke();
+      rect(50, 50, width-100, height-100, 10);
+      fill(100);
+      textAlign(CENTER, CENTER);
+      textSize(16);
+      text("Canvas pronto para suas imagens", width/2, height/2);
+    }
+
+    function windowResized() {
+      const canvasSize = getCanvasSize();
+      resizeCanvas(canvasSize, canvasSize);
+      if (lastGeneratedImage) {
+        background(20);
+        image(lastGeneratedImage, 0, 0, width, height);
+        updateStatus("Canvas redimensionado - imagem mantida");
+      } else {
+        background(20);
+        fill(40);
+        noStroke();
+        rect(50, 50, width-100, height-100, 10);
+        fill(100);
+        textAlign(CENTER, CENTER);
+        textSize(16);
+        text("Canvas redimensionado", width/2, height/2);
+      }
+    }
+
+    document.getElementById("imageInput").addEventListener("change", handleImageUpload);
+    document.getElementById("remixButton").addEventListener("click", remixImages);
+
+    function updateStatus(message) {
+      document.getElementById("status").textContent = message;
+    }
+
+    function handleImageUpload(event) {
+      loadedImages = [];
+      const files = event.target.files;
+      const button = document.getElementById("remixButton");
+
+      if (files.length === 0) {
+        button.disabled = true;
+        updateStatus("Selecione imagens para começar");
+        return;
+      }
+
+      updateStatus(`Carregando ${files.length} imagem(ns)...`);
+      button.disabled = true;
+
+      let count = 0;
+      for (let file of files) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          loadImage(e.target.result, (img) => {
+            loadedImages.push(img);
+            count++;
+            updateStatus(`Carregadas ${count}/${files.length} imagens`);
+            if (count === files.length) {
+              remixReady = true;
+              button.disabled = false;
+              updateStatus("Todas as imagens carregadas! Pronto para remixar.");
+            }
+          });
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function remixImages() {
+      if (!remixReady || loadedImages.length === 0) {
+        updateStatus("Carregue imagens antes de remixar!");
+        return;
+      }
+
+      updateStatus("Criando remix...");
+      background(20);
+
+      const combined = blendImagesSmart();
+      applyGlitch(combined);
+      image(combined, 0, 0, width, height);
+
+      const highResCombined = blendImagesSmart(1920, 1920);
+      applyGlitch(highResCombined);
+
+      lastGeneratedImage = combined;
+      highResImage = highResCombined;
+
+      const dataURL = highResCombined.elt.toDataURL();
+      setupDownloadLink(dataURL);
+
+      setTimeout(() => {
+        const original = cnv.elt.toDataURL();
+        window.glitchCanvas({
+          amount: random(60, 100),
+          quality: random(15, 30),
+          seed: floor(random(9999)),
+          iterations: floor(random(8, 15))
+        })
+        .fromDataURL(original)
+        .toDataURL()
+        .then((glitched) => {
+          loadImage(glitched, (p5img) => {
+            background(20);
+            image(p5img, 0, 0, width, height);
+            lastGeneratedImage = createGraphics(width, height);
+            lastGeneratedImage.image(p5img, 0, 0, width, height);
+            updateStatus("Remix concluído! Clique no link para baixar.");
+          });
+        });
+      }, 200);
+    }
+
+    function blendImagesSmart(targetWidth = width, targetHeight = height) {
+      const combined = createGraphics(targetWidth, targetHeight);
+      combined.background(20);
+
+      for (let img of loadedImages) {
+        const scaleFactor = Math.min(targetWidth / img.width, targetHeight / img.height) * 0.8;
+        const imgW = img.width * scaleFactor;
+        const imgH = img.height * scaleFactor;
+
+        for (let j = 0; j < 4; j++) {
+          const maskType = floor(random(4));
+          if (maskType === 0) {
+            combined.push();
+            combined.translate(random(targetWidth), random(targetHeight));
+            combined.beginClip();
+            combined.ellipse(0, 0, random(80, 300));
+            combined.endClip();
+            combined.image(img, -imgW / 2, -imgH / 2, imgW, imgH);
+            combined.pop();
+          } else if (maskType === 1) {
+            const x = floor(random(targetWidth - 100));
+            const sliceW = random(20, 100);
+            combined.copy(img, x, 0, sliceW, img.height, x + random(-30, 30), 0, sliceW, targetHeight);
+          } else if (maskType === 2) {
+            combined.push();
+            combined.translate(random(targetWidth), random(targetHeight));
+            combined.rotate(random(-PI / 3, PI / 3));
+            combined.tint(255, random(60, 150));
+            combined.image(img, -imgW / 2, -imgH / 2, imgW, imgH);
+            combined.pop();
+          } else {
+            const blockW = random(50, 200);
+            const blockH = random(50, 200);
+            const sx = random(img.width - blockW);
+            const sy = random(img.height - blockH);
+            const dx = random(targetWidth - blockW);
+            const dy = random(targetHeight - blockH);
+            combined.copy(img, sx, sy, blockW, blockH, dx, dy, blockW, blockH);
+          }
+        }
+      }
+
+      return combined;
+    }
+
+    function applyGlitch(pg) {
+      const w = pg.width;
+      const h = pg.height;
+      const scaleFactor = w / 800;
+
+      for (let i = 0; i < 60 * scaleFactor; i++) {
+        const sx = floor(random(w));
+        const sy = floor(random(h));
+        const sw = floor(random(10, 80));
+        const sh = floor(random(3, 30));
+        const dx = sx + floor(random(-80, 80));
+        const dy = sy + floor(random(-50, 50));
+        pg.copy(pg, sx, sy, sw, sh, dx, dy, sw, sh);
+      }
+
+      for (let i = 0; i < 15 * scaleFactor; i++) {
+        const y = floor(random(h));
+        const hStrip = floor(random(1, 8));
+        const offset = floor(random(-100, 100));
+        pg.copy(pg, 0, y, w, hStrip, offset, y, w, hStrip);
+      }
+
+      pg.loadPixels();
+      for (let i = 0; i < pg.pixels.length; i += 4) {
+        if (random() < 0.02) {
+          pg.pixels[i] = random(255);
+          pg.pixels[i + 1] = random(100);
+          pg.pixels[i + 2] = random(255);
+        }
+        if (random() < 0.05) {
+          const noise = random(-40, 40);
+          pg.pixels[i] = constrain(pg.pixels[i] + noise, 0, 255);
+          pg.pixels[i + 1] = constrain(pg.pixels[i + 1] + noise, 0, 255);
+          pg.pixels[i + 2] = constrain(pg.pixels[i + 2] + noise, 0, 255);
+        }
+      }
+      pg.updatePixels();
+
+      for (let i = 0; i < 8 * scaleFactor; i++) {
+        const blockSize = floor(random(5, 30));
+        const px = floor(random(0, w - blockSize));
+        const py = floor(random(0, h - blockSize));
+        pg.noStroke();
+        pg.fill(random(255), random(100), random(255), random(100, 200));
+        pg.rect(px, py, blockSize, blockSize);
+      }
+    }
+
+    function setupDownloadLink(dataURL) {
+      const link = document.getElementById("downloadLink");
+      link.href = dataURL;
+      link.download = `remix-arte-${Date.now()}.png`;
+      link.style.display = "inline-block";
+    }
+  </script>
 </body>
 </html>

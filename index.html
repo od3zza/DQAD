@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Remixador de Imagens</title>
-<link rel="stylesheet" href="lib/styles.css">
-<script type="module" src="lib/script.js" defer></script>
 
   <style>
     /* Reset básico */
@@ -109,7 +107,20 @@
       opacity: 0.7;
     }
   </style>
-
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Remixador de Arte Digital</h1>
+    
+    <div class="controls">
+      <input type="file" id="imageInput" multiple accept="image/png, image/jpeg, image/webp" />
+      <button id="remixButton" disabled>Remixar Imagens</button>
+    </div>
+    
+    <div id="canvasContainer"></div>
+    <div id="status" class="status">Selecione imagens para começar</div>
+    <a id="downloadLink" href="#" style="display: none; color: #fff; text-decoration: underline; margin-top: 1rem;">baixar em alta resolução (1920x1920)</a>
+  </div>
  
   <script>
     let loadedImages = [];

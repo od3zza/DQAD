@@ -6,6 +6,8 @@
   <title>Remixador de Imagens</title>
 
   <style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+
   * {
   margin: 0;
   padding: 0;
@@ -15,7 +17,7 @@
 html, body {
   background-color: #000;
   color: #fff;
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: "Syne", sans-serif;
   height: 100%;
   overflow-x: hidden;
   font-size: 16px; /* Tamanho de fonte base */
@@ -25,7 +27,7 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 3rem 1rem 3rem;
   width: 100%;
   text-align: center;
   min-height: 100vh;
@@ -117,16 +119,16 @@ button:disabled {
 
 <body>
   <div class="container">
-    <h1>🎨 Remixador de Arte Digital</h1>
+    <h1>8centspx</h1>
     
     <div class="controls">
       <input type="file" id="imageInput" multiple accept="image/png, image/jpeg, image/webp" />
-      <button id="remixButton" disabled>Remixar Imagens</button>
+      <button id="remixButton" disabled>destroy!</button>
     </div>
     
     <div id="canvasContainer"></div>
-    <div id="status" class="status">Selecione imagens para começar</div>
-    <a id="downloadLink" href="#">baixar em alta resolução (1920x1920)</a>
+    <div id="status" class="status">add images!</div>
+    <a id="downloadLink" href="#">download</a>
   </div>
 
   <!-- Bibliotecas externas -->
@@ -160,7 +162,7 @@ button:disabled {
       fill(100);
       textAlign(CENTER, CENTER);
       textSize(16);
-      text("Canvas pronto para suas imagens", width/2, height/2);
+      text("canva ready", width/2, height/2);
     }
 
     function windowResized() {
@@ -169,7 +171,7 @@ button:disabled {
       if (lastGeneratedImage) {
         background(20);
         image(lastGeneratedImage, 0, 0, width, height);
-        updateStatus("Canvas redimensionado - imagem mantida");
+        updateStatus("resized");
       } else {
         background(20);
         fill(40);
@@ -178,7 +180,7 @@ button:disabled {
         fill(100);
         textAlign(CENTER, CENTER);
         textSize(16);
-        text("Canvas redimensionado", width/2, height/2);
+        text("resized", width/2, height/2);
       }
     }
 
@@ -196,11 +198,11 @@ button:disabled {
 
       if (files.length === 0) {
         button.disabled = true;
-        updateStatus("Selecione imagens para começar");
+        updateStatus("add images!");
         return;
       }
 
-      updateStatus(`Carregando ${files.length} imagem(ns)...`);
+      updateStatus(`uploading ${files.length} file(s)...`);
       button.disabled = true;
 
       let count = 0;
@@ -210,11 +212,11 @@ button:disabled {
           loadImage(e.target.result, (img) => {
             loadedImages.push(img);
             count++;
-            updateStatus(`Carregadas ${count}/${files.length} imagens`);
+            updateStatus(`uploaded ${count}/${files.length} images`);
             if (count === files.length) {
               remixReady = true;
               button.disabled = false;
-              updateStatus("Todas as imagens carregadas! Pronto para remixar.");
+              updateStatus("loaded! destroy!");
             }
           });
         };
@@ -224,11 +226,11 @@ button:disabled {
 
     function remixImages() {
       if (!remixReady || loadedImages.length === 0) {
-        updateStatus("Carregue imagens antes de remixar!");
+        updateStatus("add images...");
         return;
       }
 
-      updateStatus("Criando remix...");
+      updateStatus("destroying...");
       background(20);
 
  const combined = blendImagesSmart();
@@ -261,7 +263,7 @@ button:disabled {
         image(p5img, 0, 0, width, height);
         lastGeneratedImage = createGraphics(width, height);
         lastGeneratedImage.image(p5img, 0, 0, width, height);
-        updateStatus("Remix concluído! Clique no link para baixar.");
+        updateStatus("👌");
           });
         });
       }, 200);

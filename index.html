@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>oitocentspx @od3zza#25</title>
-
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
 
@@ -22,7 +21,6 @@
         height: 100%;
         overflow-x: hidden;
         font-size: 16px;
-        /* Tamanho de fonte base */
       }
 
       p,
@@ -45,13 +43,13 @@
       }
 
       h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
         margin-bottom: 1.5rem;
         letter-spacing: 1px;
       }
 
       h2 {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         margin-bottom: 1.5rem;
         letter-spacing: 1px;
       }
@@ -72,7 +70,6 @@
         padding: 1rem;
         border-radius: 4px;
         width: 100%;
-        /* Responsivo */
       }
 
       button {
@@ -86,7 +83,6 @@
         font-size: 16px;
         border-radius: 4px;
         width: 100%;
-        /* Responsivo */
       }
 
       button:hover {
@@ -103,7 +99,7 @@
       hr {
         width: 50%;
         max-width: 430px;
-        margin: 30px auto 30px auto; /* Isso centraliza */
+        margin: 30px auto 30px auto;
       }
 
       #canvasContainer {
@@ -118,7 +114,6 @@
       #canvasContainer canvas {
         max-width: 100%;
         max-height: 70vh;
-        /* Ajusta para telas pequenas */
         border: 1px solid #888;
         border-radius: 8px;
       }
@@ -152,34 +147,30 @@
         transition: max-height 0.5s ease-out;
       }
 
-      /* Estilo da Modal */
       .modal {
-        display: none; /* Inicialmente oculta */
+        display: none;
         position: fixed;
-        z-index: 1; /* Fica por cima de outros elementos */
+        z-index: 1;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
-        overflow: auto; /* Rolagem caso necessário */
-        background-color: rgba(0, 0, 0, 0.8); /* Fundo translúcido */
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
       }
 
-      /* Conteúdo da Modal */
       .modal-content {
         background-color: #000;
         margin: 15% auto;
         padding: 20px;
         border: 1px solid #888;
-        width: 80%; /* Pode ajustar conforme necessário */
+        width: 80%;
         max-width: 600px;
         color: #fff;
         text-align: justify;
         line-height: 1.6;
-        font-family: "Syne", sans-serif;
       }
 
-      /* Botão de Fechar */
       .close {
         color: #aaa;
         float: right;
@@ -194,7 +185,6 @@
         cursor: pointer;
       }
 
-      /* Galeria */
       .gallery {
         display: flex;
         flex-wrap: wrap;
@@ -207,7 +197,7 @@
         height: 300px;
         object-fit: cover;
         cursor: pointer;
-        border-radius: 0;
+        border-radius: 8px;
         transition: transform 0.3s;
       }
 
@@ -215,7 +205,6 @@
         transform: scale(1.05);
       }
 
-      /* Lightbox */
       .lightbox {
         position: fixed;
         top: 0;
@@ -226,17 +215,15 @@
         display: none;
         justify-content: center;
         align-items: center;
-        z-index: 1000; /* Garante que a lightbox esteja na frente de outros elementos */
+        z-index: 1000;
       }
 
       .lightbox-img {
         max-width: 90%;
         max-height: 90%;
-        border-radius: 0px;
-        z-index: 500; /* A imagem estará atrás do botão */
       }
 
-      .close {
+      .close-lightbox {
         position: absolute;
         top: 20px;
         right: 30px;
@@ -245,14 +232,42 @@
         cursor: pointer;
         background-color: transparent;
         border: none;
-        z-index: 2000; /* Garante que o botão esteja na frente da imagem */
+        z-index: 2000;
+      }
+
+      /* Animations */
+      .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        .container {
+          padding: 1rem;
+        }
+        h1, h2 {
+          font-size: 1.5rem;
+        }
+        .controls input,
+        .controls button {
+          width: 100%;
+        }
       }
     </style>
   </head>
 
   <body>
     <div class="container">
-      <h1>8centspx</h1>
+      <h1 class="fade-in">8centspx</h1>
 
       <!-- Menu -->
       <p>
@@ -262,91 +277,38 @@
         </center>
       </p>
 
-      <br />
-
-      <!-- what -->
+      <!-- Modals -->
       <div id="modal1" class="modal">
         <div class="modal-content">
-          <p>
-            <center>about 1</center>
-            <br />
-            we live in a time when we only accept art—especially photography—if
-            it's top quality. if it's not that cool, grainy old-school photo, we
-            just think it's trash... or, at best, it turns into a
-            super-compressed meme that the internet goes wild sharing.
-            <em>oitocentspx</em> is my way of messing things up a bit. it's an
-            experiment in destruction. or reconstruction. call it what you like.
-            taking some of my own original photos from various themes, photos i
-            took myself, i condemned them to extreme pixelation. it's an art of
-            the absurd, and purely digital. here, these images get a new life.
-            they're reconfigured using a 'language' of fragmentation and heavy
-            compression, a mix of everything with the very code of this simple,
-            somewhat static app — but it gets the job done. the result is
-            completely new images that make up this series. for me, this
-            experiment is part of a development study, also a practice of
-            re-signification, a reflection on art and an exploration of new
-            avenues for dialogue between the eye and technology... and
-            curiosity.
-          </p>
+          <p><center>about 1</center><br />This is an experiment in artistic destruction. Old photos are pixelated and transformed into new abstract art.</p>
           <span class="close">&times;</span>
         </div>
       </div>
 
-      <!-- who -->
       <div id="modal2" class="modal">
         <div class="modal-content">
-          <p>
-            <center>about 2</center>
-            <br />Conteúdo sobre o segundo tema.
-          </p>
+          <p><center>about 2</center><br />Conteúdo sobre o segundo tema.</p>
           <span class="close">&times;</span>
         </div>
       </div>
 
       <div class="gallery">
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
-          alt="Image 1"
-          class="gallery-item"
-        />
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
-          alt="Image 2"
-          class="gallery-item"
-        />
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
-          alt="Image 3"
-          class="gallery-item"
-        />
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
-          alt="Image 4"
-          class="gallery-item"
-        />
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
-          alt="Image 5"
-          class="gallery-item"
-        />
+        <img src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg" alt="Imagem 1" class="gallery-item"/>
+        <img src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg" alt="Imagem 2" class="gallery-item"/>
+        <img src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg" alt="Imagem 3" class="gallery-item"/>
       </div>
 
-      <!-- Lightbox (imagem ampliada) -->
+      <!-- Lightbox -->
       <div id="lightbox" class="lightbox">
-        <span id="close" class="close">&times;</span>
-        <img id="lightbox-img" class="lightbox-img" src="" alt="" />
+        <span id="close" class="close-lightbox">&times;</span>
+        <img id="lightbox-img" class="lightbox-img" src="" alt=""/>
       </div>
 
       <hr />
 
       <h2>destroy your art</h2>
       <div class="controls">
-        <input
-          type="file"
-          id="imageInput"
-          multiple
-          accept="image/png, image/jpeg, image/webp"
-        />
+        <input type="file" id="imageInput" multiple accept="image/png, image/jpeg, image/webp"/>
         <button id="remixButton" disabled>destroy!</button>
       </div>
 
@@ -356,12 +318,8 @@
     </div>
 
     <hr />
-
-    <!-- Bibliotecas externas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
     <script src="https://unpkg.com/glitch-canvas@1.1.0/dist/glitch-canvas.min.js"></script>
-
-    <!-- Script principal -->
     <script>
       let loadedImages = [];
       let remixReady = false;
@@ -369,51 +327,35 @@
       let lastGeneratedImage = null;
       let highResImage = null;
 
-      // Função para abrir o modal com base no ID
       function openModal(modalId) {
-        document.getElementById(modalId).style.display = "block"; // Exibe o modal com o ID especificado
+        document.getElementById(modalId).style.display = "block";
       }
 
-      // Função para fechar o modal
       function closeModal(modalId) {
-        document.getElementById(modalId).style.display = "none"; // Esconde o modal com o ID especificado
+        document.getElementById(modalId).style.display = "none";
       }
 
-      // Ação para todos os links com a classe 'linkheader'
       document.querySelectorAll(".linkheader").forEach((link) => {
         link.addEventListener("click", function (event) {
-          event.preventDefault(); // Impede o comportamento padrão de navegação
-
-          // Pega o ID do modal associado ao link clicado
+          event.preventDefault();
           const modalId = link.getAttribute("data-modal");
-          openModal(modalId); // Abre o modal correspondente
+          openModal(modalId);
         });
       });
 
-      // Ação para fechar os modais ao clicar no 'X' (botão de fechar)
       document.querySelectorAll(".close").forEach((closeButton) => {
         closeButton.addEventListener("click", function () {
           const modal = closeButton.closest(".modal");
-          closeModal(modal.id); // Fecha o modal correspondente
+          closeModal(modal.id);
         });
       });
 
-      // Fechar o modal quando clicar fora da área do modal (fundo)
       window.onclick = function (event) {
         if (event.target.classList.contains("modal")) {
-          closeModal(event.target.id); // Fecha o modal caso o clique seja fora da área interna
+          closeModal(event.target.id);
         }
       };
 
-      // Função para ajustar o tamanho do canvas
-      function getCanvasSize() {
-        const maxWidth = Math.min(window.innerWidth * 0.9, 800);
-        const maxHeight = Math.min(window.innerHeight * 0.6, 600);
-        const size = Math.min(maxWidth, maxHeight);
-        return size;
-      }
-
-      // Função de configuração do canvas
       function setup() {
         const canvasSize = getCanvasSize();
         cnv = createCanvas(canvasSize, canvasSize);
@@ -429,35 +371,17 @@
         text("canva ready", width / 2, height / 2);
       }
 
-      // Redimensionamento do canvas
-      function windowResized() {
-        const canvasSize = getCanvasSize();
-        resizeCanvas(canvasSize, canvasSize);
-        if (lastGeneratedImage) {
-          background(20);
-          image(lastGeneratedImage, 0, 0, width, height);
-          updateStatus("resized");
-        } else {
-          background(20);
-          fill(40);
-          noStroke();
-          rect(50, 50, width - 100, height - 100, 10);
-          fill(100);
-          textAlign(CENTER, CENTER);
-          textSize(16);
-          text("resized", width / 2, height / 2);
-        }
+      function getCanvasSize() {
+        const maxWidth = Math.min(window.innerWidth * 0.9, 800);
+        const maxHeight = Math.min(window.innerHeight * 0.6, 600);
+        return Math.min(maxWidth, maxHeight);
       }
 
-      // Função para atualizar o status
       function updateStatus(message) {
         document.getElementById("status").textContent = message;
       }
 
-      // Função para manipular o upload de imagens
-      document
-        .getElementById("imageInput")
-        .addEventListener("change", handleImageUpload);
+      document.getElementById("imageInput").addEventListener("change", handleImageUpload);
 
       function handleImageUpload(event) {
         loadedImages = [];
@@ -492,10 +416,7 @@
         }
       }
 
-      // Função para remixar as imagens
-      document
-        .getElementById("remixButton")
-        .addEventListener("click", remixImages);
+      document.getElementById("remixButton").addEventListener("click", remixImages);
 
       function remixImages() {
         if (!remixReady || loadedImages.length === 0) {
@@ -510,11 +431,8 @@
         applyGlitch(combined);
         image(combined, 0, 0, width, height);
 
-        const reducedResolution = 800; // Reduzimos a resolução para 600px
-        const highResCombined = blendImagesSmart(
-          reducedResolution,
-          reducedResolution
-        );
+        const reducedResolution = 800;
+        const highResCombined = blendImagesSmart(reducedResolution, reducedResolution);
         applyGlitch(highResCombined);
 
         lastGeneratedImage = combined;
@@ -525,28 +443,26 @@
 
         setTimeout(() => {
           const original = cnv.elt.toDataURL();
-          window
-            .glitchCanvas({
-              amount: random(60, 100),
-              quality: random(15, 30),
-              seed: floor(random(9999)),
-              iterations: floor(random(8, 15)),
-            })
-            .fromDataURL(original)
-            .toDataURL()
-            .then((glitched) => {
-              loadImage(glitched, (p5img) => {
-                background(20);
-                image(p5img, 0, 0, width, height);
-                lastGeneratedImage = createGraphics(width, height);
-                lastGeneratedImage.image(p5img, 0, 0, width, height);
-                updateStatus("👌");
-              });
+          window.glitchCanvas({
+            amount: random(60, 100),
+            quality: random(15, 30),
+            seed: floor(random(9999)),
+            iterations: floor(random(8, 15)),
+          })
+          .fromDataURL(original)
+          .toDataURL()
+          .then((glitched) => {
+            loadImage(glitched, (p5img) => {
+              background(20);
+              image(p5img, 0, 0, width, height);
+              lastGeneratedImage = createGraphics(width, height);
+              lastGeneratedImage.image(p5img, 0, 0, width, height);
+              updateStatus("👌");
             });
+          });
         }, 200);
       }
 
-      // Função para combinar as imagens
       function blendImagesSmart(targetWidth = width, targetHeight = height) {
         const combined = createGraphics(targetWidth, targetHeight);
         combined.background(20);
@@ -613,7 +529,6 @@
         return combined;
       }
 
-      // Função para aplicar glitch na imagem
       function applyGlitch(pg) {
         const w = pg.width;
         const h = pg.height;
@@ -662,7 +577,6 @@
         }
       }
 
-      // Função para configurar o link de download
       function setupDownloadLink(dataURL) {
         const link = document.getElementById("downloadLink");
         link.href = dataURL;
@@ -670,36 +584,28 @@
         link.style.display = "inline-block";
       }
 
-      // Selecionar todas as imagens da galeria
       const galleryItems = document.querySelectorAll(".gallery-item");
 
-      // Evento de clique para abrir a lightbox
       galleryItems.forEach((item) => {
         item.addEventListener("click", function () {
-          const src = item.getAttribute("src"); // Pega a URL da imagem
-          const lightbox = document.getElementById("lightbox"); // Seleciona o elemento lightbox
-          const lightboxImg = document.getElementById("lightbox-img"); // Seleciona o elemento img dentro da lightbox
+          const src = item.getAttribute("src");
+          const lightbox = document.getElementById("lightbox");
+          const lightboxImg = document.getElementById("lightbox-img");
 
-          // Define a imagem dentro da lightbox
           lightboxImg.src = src;
-
-          // Mostra a lightbox
           lightbox.style.display = "flex";
         });
       });
 
-      // Função para fechar a lightbox
       document.getElementById("close").addEventListener("click", function () {
-        document.getElementById("lightbox").style.display = "none"; // Esconde a lightbox
+        document.getElementById("lightbox").style.display = "none";
       });
 
-      // Fechar a lightbox ao clicar fora da imagem
       document
         .getElementById("lightbox")
         .addEventListener("click", function (event) {
           if (event.target === this) {
-            // Verifica se o clique foi na área do fundo da lightbox
-            document.getElementById("lightbox").style.display = "none"; // Esconde a lightbox
+            document.getElementById("lightbox").style.display = "none";
           }
         });
     </script>

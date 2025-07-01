@@ -6,109 +6,112 @@
   <title>Remixador de Imagens</title>
 
   <style>
-    /* Reset e estilo básico */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    html, body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Helvetica Neue', sans-serif;
-      height: 100%;
-      overflow-x: hidden;
-    }
+html, body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Helvetica Neue', sans-serif;
+  height: 100%;
+  overflow-x: hidden;
+  font-size: 16px; /* Tamanho de fonte base */
+}
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 1rem;
-      width: 100%;
-      text-align: center;
-      min-height: 100vh;
-    }
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  min-height: 100vh;
+}
 
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      letter-spacing: 1px;
-    }
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
 
-    .controls {
-      margin-bottom: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
+.controls {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
 
-    input[type="file"] {
-      color: #fff;
-      background: transparent;
-      border: 1px solid #333;
-      padding: 0.5rem;
-      border-radius: 4px;
-    }
+input[type="file"] {
+  color: #fff;
+  background: transparent;
+  border: 1px solid #333;
+  padding: 1rem;
+  border-radius: 4px;
+  width: 100%; /* Responsivo */
+}
 
-    button {
-      background-color: transparent;
-      border: 2px solid #fff;
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-weight: bold;
-      border-radius: 4px;
-    }
+button {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: bold;
+  border-radius: 4px;
+  width: 100%; /* Responsivo */
+}
 
-    button:hover {
-      background-color: #fff;
-      color: #000;
-      transform: translateY(-2px);
-    }
+button:hover {
+  background-color: #fff;
+  color: #000;
+  transform: translateY(-2px);
+}
 
-    button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
-    #canvasContainer {
-      margin: 1rem 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-grow: 1;
-    }
+#canvasContainer {
+  margin: 1rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
 
-    #canvasContainer canvas {
-      max-width: 95vw;
-      max-height: 70vh;
-      border: 1px solid #333;
-      border-radius: 8px;
-    }
+#canvasContainer canvas {
+  max-width: 100%;
+  max-height: 70vh; /* Ajusta para telas pequenas */
+  border: 1px solid #333;
+  border-radius: 8px;
+}
 
-    .status {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
+.status {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
 
-    #downloadLink {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #fff;
-      text-decoration: underline;
-      display: none;
-      transition: opacity 0.2s ease;
-    }
+#downloadLink {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+  text-decoration: underline;
+  display: none;
+  transition: opacity 0.2s ease;
+}
 
-    #downloadLink:hover {
-      opacity: 0.7;
-    }
+#downloadLink:hover {
+  opacity: 0.7;
+}
   </style>
 </head>
 <body>
@@ -227,12 +230,13 @@
       updateStatus("Criando remix...");
       background(20);
 
-      const combined = blendImagesSmart();
-      applyGlitch(combined);
-      image(combined, 0, 0, width, height);
+ const combined = blendImagesSmart();
+  applyGlitch(combined);
+  image(combined, 0, 0, width, height);
 
-      const highResCombined = blendImagesSmart(1920, 1920);
-      applyGlitch(highResCombined);
+  const reducedResolution = 600; // Reduzimos a resolução para 600px
+  const highResCombined = blendImagesSmart(reducedResolution, reducedResolution);
+  applyGlitch(highResCombined);
 
       lastGeneratedImage = combined;
       highResImage = highResCombined;
@@ -240,23 +244,23 @@
       const dataURL = highResCombined.elt.toDataURL();
       setupDownloadLink(dataURL);
 
-      setTimeout(() => {
-        const original = cnv.elt.toDataURL();
-        window.glitchCanvas({
-          amount: random(60, 100),
-          quality: random(15, 30),
-          seed: floor(random(9999)),
-          iterations: floor(random(8, 15))
-        })
-        .fromDataURL(original)
-        .toDataURL()
-        .then((glitched) => {
-          loadImage(glitched, (p5img) => {
-            background(20);
-            image(p5img, 0, 0, width, height);
-            lastGeneratedImage = createGraphics(width, height);
-            lastGeneratedImage.image(p5img, 0, 0, width, height);
-            updateStatus("Remix concluído! Clique no link para baixar.");
+ setTimeout(() => {
+    const original = cnv.elt.toDataURL();
+    window.glitchCanvas({
+      amount: random(60, 100),
+      quality: random(15, 30),
+      seed: floor(random(9999)),
+      iterations: floor(random(8, 15))
+    })
+    .fromDataURL(original)
+    .toDataURL()
+    .then((glitched) => {
+      loadImage(glitched, (p5img) => {
+        background(20);
+        image(p5img, 0, 0, width, height);
+        lastGeneratedImage = createGraphics(width, height);
+        lastGeneratedImage.image(p5img, 0, 0, width, height);
+        updateStatus("Remix concluído! Clique no link para baixar.");
           });
         });
       }, 200);

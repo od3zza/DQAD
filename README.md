@@ -1,9 +1,5 @@
-**DQAD**
+# DQAD
 
-Vivemos num tempo em que a gente só aceita arte — especialmente fotografia — se tiver a melhor qualidade. Se não for aquela foto *old school* com granulado e tudo, pensamos que é só lixo... ou, no máximo, vira um meme supercomprimido, que a internet compartilha loucamente.
+**DQAD** is a collection of 15 digital artworks by **[od3zza](https://github.com/od3zza)**, created using digital photography and *JavaScript*. The stylization process was done in a static application, also available on this website.
 
-`DQAD` é minha maneira de bagunçar um pouco isso. É um experimento de destruição. Ou de reconstrução. Chame como quiser. Partindo de algumas fotos autorais de vários temas, que eu mesmo fiz, eu as condenei à pixelização extrema. É uma arte de absurdo e puramente digital.
-
-Aqui, essas imagens ganham uma nova vida. Elas se reconfiguram usando uma 'linguagem' de fragmentação e compressão pesada, uma mistura de tudo com o próprio código desse aplicativo — simples, meio estático, mas que faz o trabalho. O resultado são imagens totalmente novas que formam essa série.
-
-Para mim, esse experimento é parte de um estudo de desenvolvimento, também uma prática de ressignificação, de reflexão sobre a arte e de exploração de novos caminhos de diálogos entre o olhar e a tecnologia... e a curiosidade.
+> We live in a time when we only accept art — especially photography — if it's top quality. If it's not that cool, grainy old-school photo, we just think it's trash... or, at best, it turns into a super-compressed meme that the internet goes wild sharing. DQAD is my way of messing things up a bit. It's an experiment in destruction. Or reconstruction. Call it what you like. Taking some of my own original photos from various themes, photos I took myself, I condemned them to extreme pixelation. It's an art of the absurd, and purely digital. Here, these images get a new life. They're reconfigured using a 'language' of fragmentation and heavy compression, a mix of everything with the very code of this simple, somewhat static app — but it gets the job done. The result is completely new images that make up this series. For me, this experiment is part of a development study, also a practice of re-signification, a reflection on art, and an exploration of new avenues for dialogue between the eye and technology... and curiosity.

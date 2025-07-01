@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remixador de Imagens</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link para o CSS -->
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Remixador de Arte Digital</h1>
+    <div class="controls">
+      <input type="file" id="imageInput" multiple accept="image/png, image/jpeg, image/webp">
+      <button id="remixButton" disabled>Remixar Imagens</button>
+    </div>
+    <div id="canvasContainer"></div>
+    <div id="status" class="status">Selecione imagens para começar</div>
+    <a id="downloadLink" href="#">baixar em alta resolução (600px)</a>
+  </div>
+
+  <script src="script.js" defer></script> <!-- Link para o JS -->
+</body>
+</html>

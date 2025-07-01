@@ -1,237 +1,424 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oitocentspx @od3zza#25</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>oitocentspx @od3zza#25</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      html,
+      body {
+        background-color: #000;
+        color: #fff;
+        font-family: "Syne", sans-serif;
+        height: 100%;
+        overflow-x: hidden;
+        font-size: 16px;
+        /* Tamanho de fonte base */
+      }
 
-    html,
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: "Syne", sans-serif;
-      height: 100%;
-      overflow-x: hidden;
-      font-size: 16px;
-      /* Tamanho de fonte base */
-    }
+      p,
+      a {
+        font-family: "Syne", sans-serif;
+        font-size: 14px;
+        color: #fff;
+        text-align: justify;
+        margin: 0 0 0 0;
+      }
 
-    p,
-    a {
-      font-family: "Syne", sans-serif;
-      font-size: 14px;
-      color: #fff;
-      margin: 0 0 0 0;
-    }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 3rem 1rem 3rem;
+        width: 100%;
+        text-align: center;
+        min-height: 100vh;
+      }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 1rem 3rem 1rem 3rem;
-      width: 100%;
-      text-align: center;
-      min-height: 100vh;
-    }
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+      }
 
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      letter-spacing: 1px;
-    }
+      h2 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+      }
 
-    .controls {
-      margin-bottom: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      width: 100%;
-    }
+      .controls {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+      }
 
-    input[type="file"] {
-      color: #fff;
-      background: transparent;
-      border: 1px solid #333;
-      padding: 1rem;
-      border-radius: 4px;
-      width: 100%;
-      /* Responsivo */
-    }
+      input[type="file"] {
+        color: #fff;
+        background: transparent;
+        border: 1px solid #888;
+        padding: 1rem;
+        border-radius: 4px;
+        width: 100%;
+        /* Responsivo */
+      }
 
-    button {
-      background-color: transparent;
-      border: 2px solid #fff;
-      color: #fff;
-      padding: 1rem 2rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-weight: bold;
-      font-size: 16px;
-      border-radius: 4px;
-      width: 100%;
-      /* Responsivo */
-    }
+      button {
+        background-color: transparent;
+        border: 1px solid #888;
+        color: #fff;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-weight: bold;
+        font-size: 16px;
+        border-radius: 4px;
+        width: 100%;
+        /* Responsivo */
+      }
 
-    button:hover {
-      background-color: #fff;
-      color: #000;
-      transform: translateY(-2px);
-    }
+      button:hover {
+        background-color: #fff;
+        color: #000;
+        transform: translateY(-2px);
+      }
 
-    button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
 
-    hr {
-      width: 50%;
-      max-width: 430px;
-      margin-left: auto;
-      /* Define a margem esquerda como automática */
-      margin-right: auto;
-      /* Define a margem direita como automática */
-    }
+      hr {
+        width: 50%;
+        max-width: 430px;
+        margin: 30px auto 30px auto; /* Isso centraliza */
+      }
 
-    #canvasContainer {
-      margin: 1rem 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-grow: 1;
-    }
+      #canvasContainer {
+        margin: 1rem 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+      }
 
-    #canvasContainer canvas {
-      max-width: 100%;
-      max-height: 70vh;
-      /* Ajusta para telas pequenas */
-      border: 1px solid #333;
-      border-radius: 8px;
-    }
+      #canvasContainer canvas {
+        max-width: 100%;
+        max-height: 70vh;
+        /* Ajusta para telas pequenas */
+        border: 1px solid #888;
+        border-radius: 8px;
+      }
 
-    .status {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
+      .status {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
 
-    #downloadLink {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #fff;
-      text-decoration: underline;
-      display: none;
-      transition: opacity 0.2s ease;
-    }
+      #downloadLink {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #fff;
+        text-decoration: underline;
+        display: none;
+        transition: opacity 0.2s ease;
+      }
 
-    #downloadLink:hover {
-      opacity: 0.7;
-    }
+      #downloadLink:hover {
+        opacity: 0.7;
+      }
 
-    #conteudoOculto {
-      display: none;
-      max-width: 800px;
-      margin: 0 auto 0 auto;
-      text-align: justify;
-      padding: 0;
-      line-height: 1.6;
-    }
-  </style>
-</head>
+      #conteudoOculto {
+        display: none;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0;
+        text-align: justify;
+        line-height: 1.6;
+        transition: max-height 0.5s ease-out;
+      }
 
-<body>
-  <div class="container">
-    <h1>8centspx</h1>
+      /* Estilo da Modal */
+      .modal {
+        display: none; /* Inicialmente oculta */
+        position: fixed;
+        z-index: 1; /* Fica por cima de outros elementos */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto; /* Rolagem caso necessário */
+        background-color: rgba(0, 0, 0, 0.8); /* Fundo translúcido */
+      }
 
-    <div class="controls">
-      <input type="file" id="imageInput" multiple accept="image/png, image/jpeg, image/webp" />
-      <button id="remixButton" disabled>destroy!</button>
+      /* Conteúdo da Modal */
+      .modal-content {
+        background-color: #000;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Pode ajustar conforme necessário */
+        max-width: 600px;
+        color: #fff;
+        text-align: justify;
+        line-height: 1.6;
+        font-family: "Syne", sans-serif;
+      }
+
+      /* Botão de Fechar */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      /* Galeria */
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .gallery img {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 0;
+        transition: transform 0.3s;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+
+      /* Lightbox */
+      .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000; /* Garante que a lightbox esteja na frente de outros elementos */
+      }
+
+      .lightbox-img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 0px;
+        z-index: 500; /* A imagem estará atrás do botão */
+      }
+
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        z-index: 2000; /* Garante que o botão esteja na frente da imagem */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>8centspx</h1>
+
+      <!-- Menu -->
+      <p>
+        <center>
+          <a href="#" class="linkheader" data-modal="modal1">what</a> |
+          <a href="#" class="linkheader" data-modal="modal2">who</a>
+        </center>
+      </p>
+
+      <br />
+
+      <!-- what -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <p>
+            <center>about 1</center>
+            <br />
+            we live in a time when we only accept art—especially photography—if
+            it's top quality. if it's not that cool, grainy old-school photo, we
+            just think it's trash... or, at best, it turns into a
+            super-compressed meme that the internet goes wild sharing.
+            <em>oitocentspx</em> is my way of messing things up a bit. it's an
+            experiment in destruction. or reconstruction. call it what you like.
+            taking some of my own original photos from various themes, photos i
+            took myself, i condemned them to extreme pixelation. it's an art of
+            the absurd, and purely digital. here, these images get a new life.
+            they're reconfigured using a 'language' of fragmentation and heavy
+            compression, a mix of everything with the very code of this simple,
+            somewhat static app — but it gets the job done. the result is
+            completely new images that make up this series. for me, this
+            experiment is part of a development study, also a practice of
+            re-signification, a reflection on art and an exploration of new
+            avenues for dialogue between the eye and technology... and
+            curiosity.
+          </p>
+          <span class="close">&times;</span>
+        </div>
+      </div>
+
+      <!-- who -->
+      <div id="modal2" class="modal">
+        <div class="modal-content">
+          <p>
+            <center>about 2</center>
+            <br />Conteúdo sobre o segundo tema.
+          </p>
+          <span class="close">&times;</span>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
+          alt="Image 1"
+          class="gallery-item"
+        />
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
+          alt="Image 2"
+          class="gallery-item"
+        />
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
+          alt="Image 3"
+          class="gallery-item"
+        />
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
+          alt="Image 4"
+          class="gallery-item"
+        />
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
+          alt="Image 5"
+          class="gallery-item"
+        />
+      </div>
+
+      <!-- Lightbox (imagem ampliada) -->
+      <div id="lightbox" class="lightbox">
+        <span id="close" class="close">&times;</span>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="" />
+      </div>
+
+      <hr />
+
+      <h2>destroy your art</h2>
+      <div class="controls">
+        <input
+          type="file"
+          id="imageInput"
+          multiple
+          accept="image/png, image/jpeg, image/webp"
+        />
+        <button id="remixButton" disabled>destroy!</button>
+      </div>
+
+      <div id="canvasContainer"></div>
+      <div id="status" class="status">add images!</div>
+      <a id="downloadLink" href="#">download</a>
     </div>
 
-    <div id="canvasContainer"></div>
-    <div id="status" class="status">add images!</div>
-    <a id="downloadLink" href="#">download</a>
-  </div>
+    <hr />
 
-  <hr />
+    <!-- Bibliotecas externas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <script src="https://unpkg.com/glitch-canvas@1.1.0/dist/glitch-canvas.min.js"></script>
 
-  <p>
-    <center><a href="#" id="linkRodape">about</a></center>
-  </p>
-  <div id="conteudoOculto">
-    <p>we live in a time when we only accept art—especially photography—if it's top quality. if it's not that cool,
-      grainy old-school photo, we just think it's trash... or, at best, it turns into a super-compressed meme that the
-      internet goes wild sharing.
-      <em>oitocentspx</em> is my way of messing things up a bit. it's an experiment in destruction. or reconstruction.
-      call it what
-      you like. taking some of my own original photos from various themes, photos i took myself, i condemned them to
-      extreme pixelation. it's an art of the absurd, and purely digital.
-      here, these images get a new life. they're reconfigured using a 'language' of fragmentation and heavy
-      compression, a
-      mix of everything with the very code of this simple, somewhat static app — but it gets the job done. the result is
-      completely new images that make up this series.
-      for me, this experiment is part of a development study, also a practice of re-signification, a reflection on art
-      and
-      an exploration of new avenues for dialogue between the eye and technology... and curiosity.</p>
-    <p>
-      <center><a href="#" id="fecharConteudoBtn">close</a></center>
-    </p>
-  </div>
+    <!-- Script principal -->
+    <script>
+      let loadedImages = [];
+      let remixReady = false;
+      let cnv;
+      let lastGeneratedImage = null;
+      let highResImage = null;
 
-  <br /><br />
-  <!-- Bibliotecas externas -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-  <script src="https://unpkg.com/glitch-canvas@1.1.0/dist/glitch-canvas.min.js"></script>
+      // Função para abrir o modal com base no ID
+      function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block"; // Exibe o modal com o ID especificado
+      }
 
-  <!-- Script principal -->
-  <script>
-    let loadedImages = [];
-    let remixReady = false;
-    let cnv;
-    let lastGeneratedImage = null;
-    let highResImage = null;
+      // Função para fechar o modal
+      function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none"; // Esconde o modal com o ID especificado
+      }
 
-    function getCanvasSize() {
-      const maxWidth = Math.min(window.innerWidth * 0.9, 800);
-      const maxHeight = Math.min(window.innerHeight * 0.6, 600);
-      const size = Math.min(maxWidth, maxHeight);
-      return size;
-    }
+      // Ação para todos os links com a classe 'linkheader'
+      document.querySelectorAll(".linkheader").forEach((link) => {
+        link.addEventListener("click", function (event) {
+          event.preventDefault(); // Impede o comportamento padrão de navegação
 
-    function setup() {
-      const canvasSize = getCanvasSize();
-      cnv = createCanvas(canvasSize, canvasSize);
-      cnv.parent("canvasContainer");
-      noLoop();
-      background(20);
-      fill(40);
-      noStroke();
-      rect(50, 50, width - 100, height - 100, 10);
-      fill(100);
-      textAlign(CENTER, CENTER);
-      textSize(16);
-      text("canva ready", width / 2, height / 2);
-    }
+          // Pega o ID do modal associado ao link clicado
+          const modalId = link.getAttribute("data-modal");
+          openModal(modalId); // Abre o modal correspondente
+        });
+      });
 
-    function windowResized() {
-      const canvasSize = getCanvasSize();
-      resizeCanvas(canvasSize, canvasSize);
-      if (lastGeneratedImage) {
-        background(20);
-        image(lastGeneratedImage, 0, 0, width, height);
-        updateStatus("resized");
-      } else {
+      // Ação para fechar os modais ao clicar no 'X' (botão de fechar)
+      document.querySelectorAll(".close").forEach((closeButton) => {
+        closeButton.addEventListener("click", function () {
+          const modal = closeButton.closest(".modal");
+          closeModal(modal.id); // Fecha o modal correspondente
+        });
+      });
+
+      // Fechar o modal quando clicar fora da área do modal (fundo)
+      window.onclick = function (event) {
+        if (event.target.classList.contains("modal")) {
+          closeModal(event.target.id); // Fecha o modal caso o clique seja fora da área interna
+        }
+      };
+
+      // Função para ajustar o tamanho do canvas
+      function getCanvasSize() {
+        const maxWidth = Math.min(window.innerWidth * 0.9, 800);
+        const maxHeight = Math.min(window.innerHeight * 0.6, 600);
+        const size = Math.min(maxWidth, maxHeight);
+        return size;
+      }
+
+      // Função de configuração do canvas
+      function setup() {
+        const canvasSize = getCanvasSize();
+        cnv = createCanvas(canvasSize, canvasSize);
+        cnv.parent("canvasContainer");
+        noLoop();
         background(20);
         fill(40);
         noStroke();
@@ -239,220 +426,282 @@
         fill(100);
         textAlign(CENTER, CENTER);
         textSize(16);
-        text("resized", width / 2, height / 2);
+        text("canva ready", width / 2, height / 2);
       }
-    }
 
-    document.getElementById("imageInput").addEventListener("change", handleImageUpload);
-    document.getElementById("remixButton").addEventListener("click", remixImages);
+      // Redimensionamento do canvas
+      function windowResized() {
+        const canvasSize = getCanvasSize();
+        resizeCanvas(canvasSize, canvasSize);
+        if (lastGeneratedImage) {
+          background(20);
+          image(lastGeneratedImage, 0, 0, width, height);
+          updateStatus("resized");
+        } else {
+          background(20);
+          fill(40);
+          noStroke();
+          rect(50, 50, width - 100, height - 100, 10);
+          fill(100);
+          textAlign(CENTER, CENTER);
+          textSize(16);
+          text("resized", width / 2, height / 2);
+        }
+      }
 
-    function updateStatus(message) {
-      document.getElementById("status").textContent = message;
-    }
+      // Função para atualizar o status
+      function updateStatus(message) {
+        document.getElementById("status").textContent = message;
+      }
 
-    function handleImageUpload(event) {
-      loadedImages = [];
-      const files = event.target.files;
-      const button = document.getElementById("remixButton");
+      // Função para manipular o upload de imagens
+      document
+        .getElementById("imageInput")
+        .addEventListener("change", handleImageUpload);
 
-      if (files.length === 0) {
+      function handleImageUpload(event) {
+        loadedImages = [];
+        const files = event.target.files;
+        const button = document.getElementById("remixButton");
+
+        if (files.length === 0) {
+          button.disabled = true;
+          updateStatus("add images!");
+          return;
+        }
+
+        updateStatus(`uploading ${files.length} file(s)...`);
         button.disabled = true;
-        updateStatus("add images!");
-        return;
-      }
 
-      updateStatus(`uploading ${files.length} file(s)...`);
-      button.disabled = true;
-
-      let count = 0;
-      for (let file of files) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          loadImage(e.target.result, (img) => {
-            loadedImages.push(img);
-            count++;
-            updateStatus(`uploaded ${count}/${files.length} images`);
-            if (count === files.length) {
-              remixReady = true;
-              button.disabled = false;
-              updateStatus("loaded! destroy!");
-            }
-          });
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    function remixImages() {
-      if (!remixReady || loadedImages.length === 0) {
-        updateStatus("add images...");
-        return;
-      }
-
-      updateStatus("destroying...");
-      background(20);
-
-      const combined = blendImagesSmart();
-      applyGlitch(combined);
-      image(combined, 0, 0, width, height);
-
-      const reducedResolution = 800; // Reduzimos a resolução para 600px
-      const highResCombined = blendImagesSmart(reducedResolution, reducedResolution);
-      applyGlitch(highResCombined);
-
-      lastGeneratedImage = combined;
-      highResImage = highResCombined;
-
-      const dataURL = highResCombined.elt.toDataURL();
-      setupDownloadLink(dataURL);
-
-      setTimeout(() => {
-        const original = cnv.elt.toDataURL();
-        window.glitchCanvas({
-            amount: random(60, 100),
-            quality: random(15, 30),
-            seed: floor(random(9999)),
-            iterations: floor(random(8, 15))
-          })
-          .fromDataURL(original)
-          .toDataURL()
-          .then((glitched) => {
-            loadImage(glitched, (p5img) => {
-              background(20);
-              image(p5img, 0, 0, width, height);
-              lastGeneratedImage = createGraphics(width, height);
-              lastGeneratedImage.image(p5img, 0, 0, width, height);
-              updateStatus("👌");
+        let count = 0;
+        for (let file of files) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            loadImage(e.target.result, (img) => {
+              loadedImages.push(img);
+              count++;
+              updateStatus(`uploaded ${count}/${files.length} images`);
+              if (count === files.length) {
+                remixReady = true;
+                button.disabled = false;
+                updateStatus("loaded! destroy!");
+              }
             });
-          });
-      }, 200);
-    }
+          };
+          reader.readAsDataURL(file);
+        }
+      }
 
-    function blendImagesSmart(targetWidth = width, targetHeight = height) {
-      const combined = createGraphics(targetWidth, targetHeight);
-      combined.background(20);
+      // Função para remixar as imagens
+      document
+        .getElementById("remixButton")
+        .addEventListener("click", remixImages);
 
-      for (let img of loadedImages) {
-        const scaleFactor = Math.min(targetWidth / img.width, targetHeight / img.height) * 0.8;
-        const imgW = img.width * scaleFactor;
-        const imgH = img.height * scaleFactor;
+      function remixImages() {
+        if (!remixReady || loadedImages.length === 0) {
+          updateStatus("add images...");
+          return;
+        }
 
-        for (let j = 0; j < 4; j++) {
-          const maskType = floor(random(4));
-          if (maskType === 0) {
-            combined.push();
-            combined.translate(random(targetWidth), random(targetHeight));
-            combined.beginClip();
-            combined.ellipse(0, 0, random(80, 300));
-            combined.endClip();
-            combined.image(img, -imgW / 2, -imgH / 2, imgW, imgH);
-            combined.pop();
-          } else if (maskType === 1) {
-            const x = floor(random(targetWidth - 100));
-            const sliceW = random(20, 100);
-            combined.copy(img, x, 0, sliceW, img.height, x + random(-30, 30), 0, sliceW, targetHeight);
-          } else if (maskType === 2) {
-            combined.push();
-            combined.translate(random(targetWidth), random(targetHeight));
-            combined.rotate(random(-PI / 3, PI / 3));
-            combined.tint(255, random(60, 150));
-            combined.image(img, -imgW / 2, -imgH / 2, imgW, imgH);
-            combined.pop();
-          } else {
-            const blockW = random(50, 200);
-            const blockH = random(50, 200);
-            const sx = random(img.width - blockW);
-            const sy = random(img.height - blockH);
-            const dx = random(targetWidth - blockW);
-            const dy = random(targetHeight - blockH);
-            combined.copy(img, sx, sy, blockW, blockH, dx, dy, blockW, blockH);
+        updateStatus("destroying...");
+        background(20);
+
+        const combined = blendImagesSmart();
+        applyGlitch(combined);
+        image(combined, 0, 0, width, height);
+
+        const reducedResolution = 800; // Reduzimos a resolução para 600px
+        const highResCombined = blendImagesSmart(
+          reducedResolution,
+          reducedResolution
+        );
+        applyGlitch(highResCombined);
+
+        lastGeneratedImage = combined;
+        highResImage = highResCombined;
+
+        const dataURL = highResCombined.elt.toDataURL();
+        setupDownloadLink(dataURL);
+
+        setTimeout(() => {
+          const original = cnv.elt.toDataURL();
+          window
+            .glitchCanvas({
+              amount: random(60, 100),
+              quality: random(15, 30),
+              seed: floor(random(9999)),
+              iterations: floor(random(8, 15)),
+            })
+            .fromDataURL(original)
+            .toDataURL()
+            .then((glitched) => {
+              loadImage(glitched, (p5img) => {
+                background(20);
+                image(p5img, 0, 0, width, height);
+                lastGeneratedImage = createGraphics(width, height);
+                lastGeneratedImage.image(p5img, 0, 0, width, height);
+                updateStatus("👌");
+              });
+            });
+        }, 200);
+      }
+
+      // Função para combinar as imagens
+      function blendImagesSmart(targetWidth = width, targetHeight = height) {
+        const combined = createGraphics(targetWidth, targetHeight);
+        combined.background(20);
+
+        for (let img of loadedImages) {
+          const scaleFactor =
+            Math.min(targetWidth / img.width, targetHeight / img.height) * 0.8;
+          const imgW = img.width * scaleFactor;
+          const imgH = img.height * scaleFactor;
+
+          for (let j = 0; j < 4; j++) {
+            const maskType = floor(random(4));
+            if (maskType === 0) {
+              combined.push();
+              combined.translate(random(targetWidth), random(targetHeight));
+              combined.beginClip();
+              combined.ellipse(0, 0, random(80, 300));
+              combined.endClip();
+              combined.image(img, -imgW / 2, -imgH / 2, imgW, imgH);
+              combined.pop();
+            } else if (maskType === 1) {
+              const x = floor(random(targetWidth - 100));
+              const sliceW = random(20, 100);
+              combined.copy(
+                img,
+                x,
+                0,
+                sliceW,
+                img.height,
+                x + random(-30, 30),
+                0,
+                sliceW,
+                targetHeight
+              );
+            } else if (maskType === 2) {
+              combined.push();
+              combined.translate(random(targetWidth), random(targetHeight));
+              combined.rotate(random(-PI / 3, PI / 3));
+              combined.tint(255, random(60, 150));
+              combined.image(img, -imgW / 2, -imgH / 2, imgW, imgH);
+              combined.pop();
+            } else {
+              const blockW = random(50, 200);
+              const blockH = random(50, 200);
+              const sx = random(img.width - blockW);
+              const sy = random(img.height - blockH);
+              const dx = random(targetWidth - blockW);
+              const dy = random(targetHeight - blockH);
+              combined.copy(
+                img,
+                sx,
+                sy,
+                blockW,
+                blockH,
+                dx,
+                dy,
+                blockW,
+                blockH
+              );
+            }
           }
         }
+
+        return combined;
       }
 
-      return combined;
-    }
+      // Função para aplicar glitch na imagem
+      function applyGlitch(pg) {
+        const w = pg.width;
+        const h = pg.height;
+        const scaleFactor = w / 800;
 
-    function applyGlitch(pg) {
-      const w = pg.width;
-      const h = pg.height;
-      const scaleFactor = w / 800;
-
-      for (let i = 0; i < 60 * scaleFactor; i++) {
-        const sx = floor(random(w));
-        const sy = floor(random(h));
-        const sw = floor(random(10, 80));
-        const sh = floor(random(3, 30));
-        const dx = sx + floor(random(-80, 80));
-        const dy = sy + floor(random(-50, 50));
-        pg.copy(pg, sx, sy, sw, sh, dx, dy, sw, sh);
-      }
-
-      for (let i = 0; i < 15 * scaleFactor; i++) {
-        const y = floor(random(h));
-        const hStrip = floor(random(1, 8));
-        const offset = floor(random(-100, 100));
-        pg.copy(pg, 0, y, w, hStrip, offset, y, w, hStrip);
-      }
-
-      pg.loadPixels();
-      for (let i = 0; i < pg.pixels.length; i += 4) {
-        if (random() < 0.02) {
-          pg.pixels[i] = random(255);
-          pg.pixels[i + 1] = random(100);
-          pg.pixels[i + 2] = random(255);
+        for (let i = 0; i < 60 * scaleFactor; i++) {
+          const sx = floor(random(w));
+          const sy = floor(random(h));
+          const sw = floor(random(10, 80));
+          const sh = floor(random(3, 30));
+          const dx = sx + floor(random(-80, 80));
+          const dy = sy + floor(random(-50, 50));
+          pg.copy(pg, sx, sy, sw, sh, dx, dy, sw, sh);
         }
-        if (random() < 0.05) {
-          const noise = random(-40, 40);
-          pg.pixels[i] = constrain(pg.pixels[i] + noise, 0, 255);
-          pg.pixels[i + 1] = constrain(pg.pixels[i + 1] + noise, 0, 255);
-          pg.pixels[i + 2] = constrain(pg.pixels[i + 2] + noise, 0, 255);
+
+        for (let i = 0; i < 15 * scaleFactor; i++) {
+          const y = floor(random(h));
+          const hStrip = floor(random(1, 8));
+          const offset = floor(random(-100, 100));
+          pg.copy(pg, 0, y, w, hStrip, offset, y, w, hStrip);
+        }
+
+        pg.loadPixels();
+        for (let i = 0; i < pg.pixels.length; i += 4) {
+          if (random() < 0.02) {
+            pg.pixels[i] = random(255);
+            pg.pixels[i + 1] = random(100);
+            pg.pixels[i + 2] = random(255);
+          }
+          if (random() < 0.05) {
+            const noise = random(-40, 40);
+            pg.pixels[i] = constrain(pg.pixels[i] + noise, 0, 255);
+            pg.pixels[i + 1] = constrain(pg.pixels[i + 1] + noise, 0, 255);
+            pg.pixels[i + 2] = constrain(pg.pixels[i + 2] + noise, 0, 255);
+          }
+        }
+        pg.updatePixels();
+
+        for (let i = 0; i < 8 * scaleFactor; i++) {
+          const blockSize = floor(random(5, 30));
+          const px = floor(random(0, w - blockSize));
+          const py = floor(random(0, h - blockSize));
+          pg.noStroke();
+          pg.fill(random(255), random(100), random(255), random(100, 200));
+          pg.rect(px, py, blockSize, blockSize);
         }
       }
-      pg.updatePixels();
 
-      for (let i = 0; i < 8 * scaleFactor; i++) {
-        const blockSize = floor(random(5, 30));
-        const px = floor(random(0, w - blockSize));
-        const py = floor(random(0, h - blockSize));
-        pg.noStroke();
-        pg.fill(random(255), random(100), random(255), random(100, 200));
-        pg.rect(px, py, blockSize, blockSize);
+      // Função para configurar o link de download
+      function setupDownloadLink(dataURL) {
+        const link = document.getElementById("downloadLink");
+        link.href = dataURL;
+        link.download = `remix-arte-${Date.now()}.png`;
+        link.style.display = "inline-block";
       }
-    }
 
-    function setupDownloadLink(dataURL) {
-      const link = document.getElementById("downloadLink");
-      link.href = dataURL;
-      link.download = `remix-arte-${Date.now()}.png`;
-      link.style.display = "inline-block";
-    }
+      // Selecionar todas as imagens da galeria
+      const galleryItems = document.querySelectorAll(".gallery-item");
 
-    // JavaScript para controlar a visibilidade do conteúdo de texto
-    document.getElementById("linkRodape").addEventListener("click", function (event) {
-      event.preventDefault(); // Impede o link de navegar ou pular para o topo
+      // Evento de clique para abrir a lightbox
+      galleryItems.forEach((item) => {
+        item.addEventListener("click", function () {
+          const src = item.getAttribute("src"); // Pega a URL da imagem
+          const lightbox = document.getElementById("lightbox"); // Seleciona o elemento lightbox
+          const lightboxImg = document.getElementById("lightbox-img"); // Seleciona o elemento img dentro da lightbox
 
-      const conteudo = document.getElementById("conteudoOculto");
+          // Define a imagem dentro da lightbox
+          lightboxImg.src = src;
 
-      // Alterna a visibilidade: se está oculto, mostra; se está visível, esconde.
-      if (conteudo.style.display === "none" || conteudo.style.display === "") {
-        conteudo.style.display = "block"; // Mostra o bloco de texto
-        // Opcional: Rolagem suave para o conteúdo.
-        conteudo.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+          // Mostra a lightbox
+          lightbox.style.display = "flex";
         });
-      } else {
-        conteudo.style.display = "none"; // Esconde o bloco de texto
-      }
-    });
+      });
 
-    // Adiciona um listener para o NOVO LINK de fechar
-    document.getElementById("fecharConteudoBtn").addEventListener("click", function (event) {
-      event.preventDefault(); // Impede o link de navegar
-      document.getElementById("conteudoOculto").style.display = "none";
-    });
-  </script>
-</body>
+      // Função para fechar a lightbox
+      document.getElementById("close").addEventListener("click", function () {
+        document.getElementById("lightbox").style.display = "none"; // Esconde a lightbox
+      });
 
+      // Fechar a lightbox ao clicar fora da imagem
+      document
+        .getElementById("lightbox")
+        .addEventListener("click", function (event) {
+          if (event.target === this) {
+            // Verifica se o clique foi na área do fundo da lightbox
+            document.getElementById("lightbox").style.display = "none"; // Esconde a lightbox
+          }
+        });
+    </script>
+  </body>
 </html>

@@ -1,170 +1,196 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>oitocentspx @od3zza#25</title>
 
   <style>
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
 
-  * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-html, body {
-  background-color: #000;
-  color: #fff;
-  font-family: "Syne", sans-serif;
-  height: 100%;
-  overflow-x: hidden;
-  font-size: 16px; /* Tamanho de fonte base */
-}
+    html,
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: "Syne", sans-serif;
+      height: 100%;
+      overflow-x: hidden;
+      font-size: 16px;
+      /* Tamanho de fonte base */
+    }
 
-p, a {
-  font-family: "Syne", sans-serif;
-  font-size: 14px;
-  color: #fff;
-  margin: 0 0 0 0;
-}
+    p,
+    a {
+      font-family: "Syne", sans-serif;
+      font-size: 14px;
+      color: #fff;
+      margin: 0 0 0 0;
+    }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem 3rem 1rem 3rem;
-  width: 100%;
-  text-align: center;
-  min-height: 100vh;
-}
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 3rem 1rem 3rem;
+      width: 100%;
+      text-align: center;
+      min-height: 100vh;
+    }
 
-h1 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  letter-spacing: 1px;
-}
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
 
-.controls {
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-}
+    .controls {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+    }
 
-input[type="file"] {
-  color: #fff;
-  background: transparent;
-  border: 1px solid #333;
-  padding: 1rem;
-  border-radius: 4px;
-  width: 100%; /* Responsivo */
-}
+    input[type="file"] {
+      color: #fff;
+      background: transparent;
+      border: 1px solid #333;
+      padding: 1rem;
+      border-radius: 4px;
+      width: 100%;
+      /* Responsivo */
+    }
 
-button {
-  background-color: transparent;
-  border: 2px solid #fff;
-  color: #fff;
-  padding: 1rem 2rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-weight: bold;
-  font-size: 16px;
-  border-radius: 4px;
-  width: 100%; /* Responsivo */
-}
+    button {
+      background-color: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 4px;
+      width: 100%;
+      /* Responsivo */
+    }
 
-button:hover {
-  background-color: #fff;
-  color: #000;
-  transform: translateY(-2px);
-}
+    button:hover {
+      background-color: #fff;
+      color: #000;
+      transform: translateY(-2px);
+    }
 
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
 
-hr {
- width: 50%;
-  max-width: 430px;
-  margin-left: auto;  /* Define a margem esquerda como automática */
-  margin-right: auto; /* Define a margem direita como automática */
-}
+    hr {
+      width: 50%;
+      max-width: 430px;
+      margin-left: auto;
+      /* Define a margem esquerda como automática */
+      margin-right: auto;
+      /* Define a margem direita como automática */
+    }
 
-#canvasContainer {
-  margin: 1rem 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
+    #canvasContainer {
+      margin: 1rem 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+    }
 
-#canvasContainer canvas {
-  max-width: 100%;
-  max-height: 70vh; /* Ajusta para telas pequenas */
-  border: 1px solid #333;
-  border-radius: 8px;
-}
+    #canvasContainer canvas {
+      max-width: 100%;
+      max-height: 70vh;
+      /* Ajusta para telas pequenas */
+      border: 1px solid #333;
+      border-radius: 8px;
+    }
 
-.status {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
+    .status {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
 
-#downloadLink {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #fff;
-  text-decoration: underline;
-  display: none;
-  transition: opacity 0.2s ease;
-}
+    #downloadLink {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #fff;
+      text-decoration: underline;
+      display: none;
+      transition: opacity 0.2s ease;
+    }
 
-#downloadLink:hover {
-  opacity: 0.7;
-}
+    #downloadLink:hover {
+      opacity: 0.7;
+    }
 
-#conteudoOculto {
-    display: none;
-    max-width: 800px;
-    margin: 0 auto 0 auto;
-    text-align: justify; 
-    padding: 0;
-    line-height: 1.6;
-}
-</style>
+    #conteudoOculto {
+      display: none;
+      max-width: 800px;
+      margin: 0 auto 0 auto;
+      text-align: justify;
+      padding: 0;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
     <h1>8centspx</h1>
-    
+
     <div class="controls">
       <input type="file" id="imageInput" multiple accept="image/png, image/jpeg, image/webp" />
       <button id="remixButton" disabled>destroy!</button>
     </div>
-    
+
     <div id="canvasContainer"></div>
     <div id="status" class="status">add images!</div>
     <a id="downloadLink" href="#">download</a>
   </div>
 
   <hr />
-      
-  <p><center><a href="#" id="linkRodape">Sobre</a></center></p>
-    <div id="conteudoOculto">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p><center><a href="#" id="fecharConteudoBtn">Fechar</a></center></p> 
-    </div>
 
-    <br /><br />
-<!-- Bibliotecas externas -->
+  <p>
+    <center><a href="#" id="linkRodape">about</a></center>
+  </p>
+  <div id="conteudoOculto">
+    <p>we live in a time when we only accept art—especially photography—if it's top quality. if it's not that cool,
+      grainy old-school photo, we just think it's trash... or, at best, it turns into a super-compressed meme that the
+      internet goes wild sharing.
+      <em>oitocentspx</em> is my way of messing things up a bit. it's an experiment in destruction. or reconstruction.
+      call it what
+      you like. taking some of my own original photos from various themes, photos i took myself, i condemned them to
+      extreme pixelation. it's an art of the absurd, and purely digital.
+      here, these images get a new life. they're reconfigured using a 'language' of fragmentation and heavy
+      compression, a
+      mix of everything with the very code of this simple, somewhat static app — but it gets the job done. the result is
+      completely new images that make up this series.
+      for me, this experiment is part of a development study, also a practice of re-signification, a reflection on art
+      and
+      an exploration of new avenues for dialogue between the eye and technology... and curiosity.</p>
+    <p>
+      <center><a href="#" id="fecharConteudoBtn">close</a></center>
+    </p>
+  </div>
+
+  <br /><br />
+  <!-- Bibliotecas externas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
   <script src="https://unpkg.com/glitch-canvas@1.1.0/dist/glitch-canvas.min.js"></script>
 
@@ -191,11 +217,11 @@ hr {
       background(20);
       fill(40);
       noStroke();
-      rect(50, 50, width-100, height-100, 10);
+      rect(50, 50, width - 100, height - 100, 10);
       fill(100);
       textAlign(CENTER, CENTER);
       textSize(16);
-      text("canva ready", width/2, height/2);
+      text("canva ready", width / 2, height / 2);
     }
 
     function windowResized() {
@@ -209,11 +235,11 @@ hr {
         background(20);
         fill(40);
         noStroke();
-        rect(50, 50, width-100, height-100, 10);
+        rect(50, 50, width - 100, height - 100, 10);
         fill(100);
         textAlign(CENTER, CENTER);
         textSize(16);
-        text("resized", width/2, height/2);
+        text("resized", width / 2, height / 2);
       }
     }
 
@@ -266,13 +292,13 @@ hr {
       updateStatus("destroying...");
       background(20);
 
- const combined = blendImagesSmart();
-  applyGlitch(combined);
-  image(combined, 0, 0, width, height);
+      const combined = blendImagesSmart();
+      applyGlitch(combined);
+      image(combined, 0, 0, width, height);
 
-  const reducedResolution = 800; // Reduzimos a resolução para 600px
-  const highResCombined = blendImagesSmart(reducedResolution, reducedResolution);
-  applyGlitch(highResCombined);
+      const reducedResolution = 800; // Reduzimos a resolução para 600px
+      const highResCombined = blendImagesSmart(reducedResolution, reducedResolution);
+      applyGlitch(highResCombined);
 
       lastGeneratedImage = combined;
       highResImage = highResCombined;
@@ -280,25 +306,25 @@ hr {
       const dataURL = highResCombined.elt.toDataURL();
       setupDownloadLink(dataURL);
 
- setTimeout(() => {
-    const original = cnv.elt.toDataURL();
-    window.glitchCanvas({
-      amount: random(60, 100),
-      quality: random(15, 30),
-      seed: floor(random(9999)),
-      iterations: floor(random(8, 15))
-    })
-    .fromDataURL(original)
-    .toDataURL()
-    .then((glitched) => {
-      loadImage(glitched, (p5img) => {
-        background(20);
-        image(p5img, 0, 0, width, height);
-        lastGeneratedImage = createGraphics(width, height);
-        lastGeneratedImage.image(p5img, 0, 0, width, height);
-        updateStatus("👌");
+      setTimeout(() => {
+        const original = cnv.elt.toDataURL();
+        window.glitchCanvas({
+            amount: random(60, 100),
+            quality: random(15, 30),
+            seed: floor(random(9999)),
+            iterations: floor(random(8, 15))
+          })
+          .fromDataURL(original)
+          .toDataURL()
+          .then((glitched) => {
+            loadImage(glitched, (p5img) => {
+              background(20);
+              image(p5img, 0, 0, width, height);
+              lastGeneratedImage = createGraphics(width, height);
+              lastGeneratedImage.image(p5img, 0, 0, width, height);
+              updateStatus("👌");
+            });
           });
-        });
       }, 200);
     }
 
@@ -402,27 +428,31 @@ hr {
       link.style.display = "inline-block";
     }
 
-         // JavaScript para controlar a visibilidade do conteúdo de texto
-        document.getElementById("linkRodape").addEventListener("click", function(event) {
-            event.preventDefault(); // Impede o link de navegar ou pular para o topo
+    // JavaScript para controlar a visibilidade do conteúdo de texto
+    document.getElementById("linkRodape").addEventListener("click", function (event) {
+      event.preventDefault(); // Impede o link de navegar ou pular para o topo
 
-            const conteudo = document.getElementById("conteudoOculto");
+      const conteudo = document.getElementById("conteudoOculto");
 
-            // Alterna a visibilidade: se está oculto, mostra; se está visível, esconde.
-            if (conteudo.style.display === "none" || conteudo.style.display === "") {
-                conteudo.style.display = "block"; // Mostra o bloco de texto
-                // Opcional: Rolagem suave para o conteúdo.
-                conteudo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-                conteudo.style.display = "none"; // Esconde o bloco de texto
-            }
+      // Alterna a visibilidade: se está oculto, mostra; se está visível, esconde.
+      if (conteudo.style.display === "none" || conteudo.style.display === "") {
+        conteudo.style.display = "block"; // Mostra o bloco de texto
+        // Opcional: Rolagem suave para o conteúdo.
+        conteudo.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
         });
+      } else {
+        conteudo.style.display = "none"; // Esconde o bloco de texto
+      }
+    });
 
     // Adiciona um listener para o NOVO LINK de fechar
-        document.getElementById("fecharConteudoBtn").addEventListener("click", function(event) {
-            event.preventDefault(); // Impede o link de navegar
-            document.getElementById("conteudoOculto").style.display = "none";
-        });
+    document.getElementById("fecharConteudoBtn").addEventListener("click", function (event) {
+      event.preventDefault(); // Impede o link de navegar
+      document.getElementById("conteudoOculto").style.display = "none";
+    });
   </script>
 </body>
+
 </html>

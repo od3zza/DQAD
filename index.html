@@ -1,457 +1,485 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DQAD @od3zza#25</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DQAD @od3zza#25</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: "Syne", sans-serif;
+      height: 100%;
+      overflow-x: hidden;
+      font-size: 16px;
+    }
+
+    p,
+    a {
+      font-family: "Syne", sans-serif;
+      font-size: 14px;
+      color: #fff;
+      text-align: justify;
+      margin: 0 0 0 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 3rem 1rem 3rem;
+      width: 100%;
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .controls {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    input[type="file"] {
+      color: #fff;
+      background: transparent;
+      border: 1px solid #888;
+      padding: 1rem;
+      border-radius: 4px;
+      width: 100%;
+    }
+
+    button {
+      background-color: transparent;
+      border: 1px solid #888;
+      color: #fff;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 4px;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #fff;
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    hr {
+      width: 50%;
+      max-width: 430px;
+      margin: 30px auto 30px auto;
+    }
+
+    #canvasContainer {
+      margin: 1rem 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+    }
+
+    #canvasContainer canvas {
+      max-width: 100%;
+      max-height: 70vh;
+      border: 1px solid #888;
+      border-radius: 8px;
+    }
+
+    .status {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    #downloadLink {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #fff;
+      text-decoration: underline;
+      display: none;
+      transition: opacity 0.2s ease;
+    }
+
+    #downloadLink:hover {
+      opacity: 0.7;
+    }
+
+    #conteudoOculto {
+      display: none;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0;
+      text-align: justify;
+      line-height: 1.6;
+      transition: max-height 0.5s ease-out;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-content {
+      background-color: #000;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+      color: #fff;
+      text-align: justify;
+      line-height: 1.6;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      z-index: 2000;
+    }
+
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
       }
 
-      html,
-      body {
-        background-color: #000;
-        color: #fff;
-        font-family: "Syne", sans-serif;
-        height: 100%;
-        overflow-x: hidden;
-        font-size: 16px;
+      to {
+        opacity: 1;
       }
+    }
 
-      p,
-      a {
-        font-family: "Syne", sans-serif;
-        font-size: 14px;
-        color: #fff;
-        text-align: justify;
-        margin: 0 0 0 0;
-      }
-
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
       .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 3rem 1rem 3rem;
-        width: 100%;
-        text-align: center;
-        min-height: 100vh;
+        padding: 1rem;
       }
 
-      h1 {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-        letter-spacing: 1px;
-      }
-
+      h1,
       h2 {
         font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-        letter-spacing: 1px;
       }
 
-      .controls {
-        margin-bottom: 1rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
+      .controls input,
+      .controls button {
         width: 100%;
       }
+    }
+  </style>
+</head>
 
-      input[type="file"] {
-        color: #fff;
-        background: transparent;
-        border: 1px solid #888;
-        padding: 1rem;
-        border-radius: 4px;
-        width: 100%;
-      }
+<body>
+  <div class="container">
+    <h1 class="fade-in">8centspx</h1>
 
-      button {
-        background-color: transparent;
-        border: 1px solid #888;
-        color: #fff;
-        padding: 1rem 2rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-weight: bold;
-        font-size: 16px;
-        border-radius: 4px;
-        width: 100%;
-      }
+    <!-- Menu -->
+    <p>
+      <center>
+        <a href="#" class="linkheader" data-modal="modal1">what</a> |
+        <a href="#" class="linkheader" data-modal="modal2">who</a>
+      </center>
+    </p>
 
-      button:hover {
-        background-color: #fff;
-        color: #000;
-        transform: translateY(-2px);
-      }
-
-      button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-
-      hr {
-        width: 50%;
-        max-width: 430px;
-        margin: 30px auto 30px auto;
-      }
-
-      #canvasContainer {
-        margin: 1rem 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-grow: 1;
-      }
-
-      #canvasContainer canvas {
-        max-width: 100%;
-        max-height: 70vh;
-        border: 1px solid #888;
-        border-radius: 8px;
-      }
-
-      .status {
-        margin-top: 1rem;
-        font-size: 0.9rem;
-        opacity: 0.8;
-      }
-
-      #downloadLink {
-        margin-top: 1rem;
-        font-size: 0.9rem;
-        color: #fff;
-        text-decoration: underline;
-        display: none;
-        transition: opacity 0.2s ease;
-      }
-
-      #downloadLink:hover {
-        opacity: 0.7;
-      }
-
-      #conteudoOculto {
-        display: none;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 0;
-        text-align: justify;
-        line-height: 1.6;
-        transition: max-height 0.5s ease-out;
-      }
-
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.8);
-      }
-
-      .modal-content {
-        background-color: #000;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 600px;
-        color: #fff;
-        text-align: justify;
-        line-height: 1.6;
-      }
-
-      .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-      }
-
-      .close:hover,
-      .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-      }
-
-      .gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-      }
-
-      .gallery img {
-        width: 300px;
-        height: 300px;
-        object-fit: cover;
-        cursor: pointer;
-        border-radius: 8px;
-        transition: transform 0.3s;
-      }
-
-      .gallery img:hover {
-        transform: scale(1.05);
-      }
-
-      .lightbox {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-      }
-
-      .lightbox-img {
-        max-width: 90%;
-        max-height: 90%;
-      }
-
-      .close-lightbox {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        font-size: 2rem;
-        color: white;
-        cursor: pointer;
-        background-color: transparent;
-        border: none;
-        z-index: 2000;
-      }
-
-      /* Animations */
-      .fade-in {
-        animation: fadeIn 0.5s ease-in-out;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      /* Mobile Responsiveness */
-      @media (max-width: 768px) {
-        .container {
-          padding: 1rem;
-        }
-        h1, h2 {
-          font-size: 1.5rem;
-        }
-        .controls input,
-        .controls button {
-          width: 100%;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="container">
-      <h1 class="fade-in">8centspx</h1>
-
-      <!-- Menu -->
-      <p>
-        <center>
-          <a href="#" class="linkheader" data-modal="modal1">what</a> |
-          <a href="#" class="linkheader" data-modal="modal2">who</a>
-        </center>
-      </p>
-
-      <!-- Modals -->
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <p><center>what</center><br />
-<b>DQAD</b> is a collection of 15 digital artworks by <a href="https://github.com/od3zza">od3zza</a>, created using digital photography and <i>JavaScript</i>.
-            The stylization process was done in a static application, also available on this website.
-<br /><br />
-<i>We live in a time when we only accept art — especially photography — if it's top quality. If it's not that cool, grainy old-school photo, we just think it's trash... or, at best, it turns into a super-compressed meme that the internet goes wild sharing. DQAD is my way of messing things up a bit. It's an experiment in destruction. Or reconstruction. Call it what you like. Taking some of my own original photos from various themes, photos I took myself, I condemned them to extreme pixelation.
-<br />It's an art of the absurd, and purely digital. Here, these images get a new life. They're reconfigured using a 'language' of fragmentation and heavy compression, a mix of everything with the very code of this simple, somewhat static app — but it gets the job done. The result is completely new images that make up this series.
-<br />For me, this experiment is part of a development study, also a practice of re-signification, a reflection on art, and an exploration of new avenues for dialogue between the eye and technology... and curiosity.
-</i>
-            </p>
-          <span class="close">&times;</span>
-        </div>
+    <!-- Modals -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <p>
+          <center>what</center><br />
+          <b>DQAD</b> is a collection of 15 digital artworks by <a href="https://github.com/od3zza">od3zza</a>, created
+          using digital photography and <i>JavaScript</i>.
+          The stylization process was done in a static application, also available on this website.
+          <br /><br />
+          <i>We live in a time when we only accept art — especially photography — if it's top quality. If it's not that
+            cool, grainy old-school photo, we just think it's trash... or, at best, it turns into a super-compressed
+            meme that the internet goes wild sharing. DQAD is my way of messing things up a bit. It's an experiment in
+            destruction. Or reconstruction. Call it what you like. Taking some of my own original photos from various
+            themes, photos I took myself, I condemned them to extreme pixelation.
+            <br />It's an art of the absurd, and purely digital. Here, these images get a new life. They're reconfigured
+            using a 'language' of fragmentation and heavy compression, a mix of everything with the very code of this
+            simple, somewhat static app — but it gets the job done. The result is completely new images that make up
+            this series.
+            <br />For me, this experiment is part of a development study, also a practice of re-signification, a
+            reflection on art, and an exploration of new avenues for dialogue between the eye and technology... and
+            curiosity.
+          </i>
+        </p>
+        <span class="close">&times;</span>
       </div>
+    </div>
 
-      <div id="modal2" class="modal">
-        <div class="modal-content">
-          <p><center>about 2</center><br />Conteúdo sobre o segundo tema.</p>
-          <span class="close">&times;</span>
-        </div>
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <p>
+          <center>who</center><br />
+          <b>od3zza</b>, also known as uoshi, is a multidisciplinary designer and filmmaker from Brazil.
+          From a very young age, od3zza has been deeply involved in the arts. Throughout their career, they've
+          experimented with various art forms, including painting, illustration, sculpture, tattooing, digital arts,
+          cinema, and more recently, game design. In their practice, you'll often find experimentation, hybridization,
+          and narratives that reflect themes of loss, solitude, and contemplation.</p>
+        <span class="close">&times;</span>
       </div>
+    </div>
 
-      <div class="gallery">
-        <img src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg" alt="Imagem 1" class="gallery-item"/>
-        <img src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg" alt="Imagem 2" class="gallery-item"/>
-        <img src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg" alt="Imagem 3" class="gallery-item"/>
-      </div>
+    <div class="gallery">
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
+        alt="Imagem 1" class="gallery-item" />
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
+        alt="Imagem 2" class="gallery-item" />
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/5ee52f7d9edc8a7ee635591a/8df50655-6b68-460e-ad6c-5230001b9d5a/240404+-+063944+-+001.jpg"
+        alt="Imagem 3" class="gallery-item" />
+    </div>
 
-      <!-- Lightbox -->
-      <div id="lightbox" class="lightbox">
-        <span id="close" class="close-lightbox">&times;</span>
-        <img id="lightbox-img" class="lightbox-img" src="" alt=""/>
-      </div>
-
-      <hr />
-
-      <h2>destroy your art</h2>
-      <div class="controls">
-        <input type="file" id="imageInput" multiple accept="image/png, image/jpeg, image/webp"/>
-        <button id="remixButton" disabled>destroy!</button>
-      </div>
-
-      <div id="canvasContainer"></div>
-      <div id="status" class="status">add images!</div>
-      <a id="downloadLink" href="#">download</a>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+      <span id="close" class="close-lightbox">&times;</span>
+      <img id="lightbox-img" class="lightbox-img" src="" alt="" />
     </div>
 
     <hr />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-    <script src="https://unpkg.com/glitch-canvas@1.1.0/dist/glitch-canvas.min.js"></script>
-    <script>
-      let loadedImages = [];
-      let remixReady = false;
-      let cnv;
-      let lastGeneratedImage = null;
-      let highResImage = null;
 
-      function openModal(modalId) {
-        document.getElementById(modalId).style.display = "block";
-      }
+    <h2>destroy your art</h2>
+    <div class="controls">
+      <input type="file" id="imageInput" multiple accept="image/png, image/jpeg, image/webp" />
+      <button id="remixButton" disabled>destroy!</button>
+    </div>
 
-      function closeModal(modalId) {
-        document.getElementById(modalId).style.display = "none";
-      }
+    <div id="canvasContainer"></div>
+    <div id="status" class="status">add images!</div>
+    <a id="downloadLink" href="#">download</a>
+  </div>
 
-      document.querySelectorAll(".linkheader").forEach((link) => {
-        link.addEventListener("click", function (event) {
-          event.preventDefault();
-          const modalId = link.getAttribute("data-modal");
-          openModal(modalId);
-        });
+  <hr />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="https://unpkg.com/glitch-canvas@1.1.0/dist/glitch-canvas.min.js"></script>
+  <script>
+    let loadedImages = [];
+    let remixReady = false;
+    let cnv;
+    let lastGeneratedImage = null;
+    let highResImage = null;
+
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = "block";
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = "none";
+    }
+
+    document.querySelectorAll(".linkheader").forEach((link) => {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        const modalId = link.getAttribute("data-modal");
+        openModal(modalId);
       });
+    });
 
-      document.querySelectorAll(".close").forEach((closeButton) => {
-        closeButton.addEventListener("click", function () {
-          const modal = closeButton.closest(".modal");
-          closeModal(modal.id);
-        });
+    document.querySelectorAll(".close").forEach((closeButton) => {
+      closeButton.addEventListener("click", function () {
+        const modal = closeButton.closest(".modal");
+        closeModal(modal.id);
       });
+    });
 
-      window.onclick = function (event) {
-        if (event.target.classList.contains("modal")) {
-          closeModal(event.target.id);
-        }
-      };
-
-      function setup() {
-        const canvasSize = getCanvasSize();
-        cnv = createCanvas(canvasSize, canvasSize);
-        cnv.parent("canvasContainer");
-        noLoop();
-        background(20);
-        fill(40);
-        noStroke();
-        rect(50, 50, width - 100, height - 100, 10);
-        fill(100);
-        textAlign(CENTER, CENTER);
-        textSize(16);
-        text("canva ready", width / 2, height / 2);
+    window.onclick = function (event) {
+      if (event.target.classList.contains("modal")) {
+        closeModal(event.target.id);
       }
+    };
 
-      function getCanvasSize() {
-        const maxWidth = Math.min(window.innerWidth * 0.9, 800);
-        const maxHeight = Math.min(window.innerHeight * 0.6, 600);
-        return Math.min(maxWidth, maxHeight);
-      }
+    function setup() {
+      const canvasSize = getCanvasSize();
+      cnv = createCanvas(canvasSize, canvasSize);
+      cnv.parent("canvasContainer");
+      noLoop();
+      background(20);
+      fill(40);
+      noStroke();
+      rect(50, 50, width - 100, height - 100, 10);
+      fill(100);
+      textAlign(CENTER, CENTER);
+      textSize(16);
+      text("canva ready", width / 2, height / 2);
+    }
 
-      function updateStatus(message) {
-        document.getElementById("status").textContent = message;
-      }
+    function getCanvasSize() {
+      const maxWidth = Math.min(window.innerWidth * 0.9, 800);
+      const maxHeight = Math.min(window.innerHeight * 0.6, 600);
+      return Math.min(maxWidth, maxHeight);
+    }
 
-      document.getElementById("imageInput").addEventListener("change", handleImageUpload);
+    function updateStatus(message) {
+      document.getElementById("status").textContent = message;
+    }
 
-      function handleImageUpload(event) {
-        loadedImages = [];
-        const files = event.target.files;
-        const button = document.getElementById("remixButton");
+    document.getElementById("imageInput").addEventListener("change", handleImageUpload);
 
-        if (files.length === 0) {
-          button.disabled = true;
-          updateStatus("add images!");
-          return;
-        }
+    function handleImageUpload(event) {
+      loadedImages = [];
+      const files = event.target.files;
+      const button = document.getElementById("remixButton");
 
-        updateStatus(`uploading ${files.length} file(s)...`);
+      if (files.length === 0) {
         button.disabled = true;
-
-        let count = 0;
-        for (let file of files) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            loadImage(e.target.result, (img) => {
-              loadedImages.push(img);
-              count++;
-              updateStatus(`uploaded ${count}/${files.length} images`);
-              if (count === files.length) {
-                remixReady = true;
-                button.disabled = false;
-                updateStatus("loaded! destroy!");
-              }
-            });
-          };
-          reader.readAsDataURL(file);
-        }
+        updateStatus("add images!");
+        return;
       }
 
-      document.getElementById("remixButton").addEventListener("click", remixImages);
+      updateStatus(`uploading ${files.length} file(s)...`);
+      button.disabled = true;
 
-      function remixImages() {
-        if (!remixReady || loadedImages.length === 0) {
-          updateStatus("add images...");
-          return;
-        }
+      let count = 0;
+      for (let file of files) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          loadImage(e.target.result, (img) => {
+            loadedImages.push(img);
+            count++;
+            updateStatus(`uploaded ${count}/${files.length} images`);
+            if (count === files.length) {
+              remixReady = true;
+              button.disabled = false;
+              updateStatus("loaded! destroy!");
+            }
+          });
+        };
+        reader.readAsDataURL(file);
+      }
+    }
 
-        updateStatus("destroying...");
-        background(20);
+    document.getElementById("remixButton").addEventListener("click", remixImages);
 
-        const combined = blendImagesSmart();
-        applyGlitch(combined);
-        image(combined, 0, 0, width, height);
+    function remixImages() {
+      if (!remixReady || loadedImages.length === 0) {
+        updateStatus("add images...");
+        return;
+      }
 
-        const reducedResolution = 800;
-        const highResCombined = blendImagesSmart(reducedResolution, reducedResolution);
-        applyGlitch(highResCombined);
+      updateStatus("destroying...");
+      background(20);
 
-        lastGeneratedImage = combined;
-        highResImage = highResCombined;
+      const combined = blendImagesSmart();
+      applyGlitch(combined);
+      image(combined, 0, 0, width, height);
 
-        const dataURL = highResCombined.elt.toDataURL();
-        setupDownloadLink(dataURL);
+      const reducedResolution = 800;
+      const highResCombined = blendImagesSmart(reducedResolution, reducedResolution);
+      applyGlitch(highResCombined);
 
-        setTimeout(() => {
-          const original = cnv.elt.toDataURL();
-          window.glitchCanvas({
+      lastGeneratedImage = combined;
+      highResImage = highResCombined;
+
+      const dataURL = highResCombined.elt.toDataURL();
+      setupDownloadLink(dataURL);
+
+      setTimeout(() => {
+        const original = cnv.elt.toDataURL();
+        window.glitchCanvas({
             amount: random(60, 100),
             quality: random(15, 30),
             seed: floor(random(9999)),
@@ -468,154 +496,155 @@
               updateStatus("👌");
             });
           });
-        }, 200);
-      }
+      }, 200);
+    }
 
-      function blendImagesSmart(targetWidth = width, targetHeight = height) {
-        const combined = createGraphics(targetWidth, targetHeight);
-        combined.background(20);
+    function blendImagesSmart(targetWidth = width, targetHeight = height) {
+      const combined = createGraphics(targetWidth, targetHeight);
+      combined.background(20);
 
-        for (let img of loadedImages) {
-          const scaleFactor =
-            Math.min(targetWidth / img.width, targetHeight / img.height) * 0.8;
-          const imgW = img.width * scaleFactor;
-          const imgH = img.height * scaleFactor;
+      for (let img of loadedImages) {
+        const scaleFactor =
+          Math.min(targetWidth / img.width, targetHeight / img.height) * 0.8;
+        const imgW = img.width * scaleFactor;
+        const imgH = img.height * scaleFactor;
 
-          for (let j = 0; j < 4; j++) {
-            const maskType = floor(random(4));
-            if (maskType === 0) {
-              combined.push();
-              combined.translate(random(targetWidth), random(targetHeight));
-              combined.beginClip();
-              combined.ellipse(0, 0, random(80, 300));
-              combined.endClip();
-              combined.image(img, -imgW / 2, -imgH / 2, imgW, imgH);
-              combined.pop();
-            } else if (maskType === 1) {
-              const x = floor(random(targetWidth - 100));
-              const sliceW = random(20, 100);
-              combined.copy(
-                img,
-                x,
-                0,
-                sliceW,
-                img.height,
-                x + random(-30, 30),
-                0,
-                sliceW,
-                targetHeight
-              );
-            } else if (maskType === 2) {
-              combined.push();
-              combined.translate(random(targetWidth), random(targetHeight));
-              combined.rotate(random(-PI / 3, PI / 3));
-              combined.tint(255, random(60, 150));
-              combined.image(img, -imgW / 2, -imgH / 2, imgW, imgH);
-              combined.pop();
-            } else {
-              const blockW = random(50, 200);
-              const blockH = random(50, 200);
-              const sx = random(img.width - blockW);
-              const sy = random(img.height - blockH);
-              const dx = random(targetWidth - blockW);
-              const dy = random(targetHeight - blockH);
-              combined.copy(
-                img,
-                sx,
-                sy,
-                blockW,
-                blockH,
-                dx,
-                dy,
-                blockW,
-                blockH
-              );
-            }
+        for (let j = 0; j < 4; j++) {
+          const maskType = floor(random(4));
+          if (maskType === 0) {
+            combined.push();
+            combined.translate(random(targetWidth), random(targetHeight));
+            combined.beginClip();
+            combined.ellipse(0, 0, random(80, 300));
+            combined.endClip();
+            combined.image(img, -imgW / 2, -imgH / 2, imgW, imgH);
+            combined.pop();
+          } else if (maskType === 1) {
+            const x = floor(random(targetWidth - 100));
+            const sliceW = random(20, 100);
+            combined.copy(
+              img,
+              x,
+              0,
+              sliceW,
+              img.height,
+              x + random(-30, 30),
+              0,
+              sliceW,
+              targetHeight
+            );
+          } else if (maskType === 2) {
+            combined.push();
+            combined.translate(random(targetWidth), random(targetHeight));
+            combined.rotate(random(-PI / 3, PI / 3));
+            combined.tint(255, random(60, 150));
+            combined.image(img, -imgW / 2, -imgH / 2, imgW, imgH);
+            combined.pop();
+          } else {
+            const blockW = random(50, 200);
+            const blockH = random(50, 200);
+            const sx = random(img.width - blockW);
+            const sy = random(img.height - blockH);
+            const dx = random(targetWidth - blockW);
+            const dy = random(targetHeight - blockH);
+            combined.copy(
+              img,
+              sx,
+              sy,
+              blockW,
+              blockH,
+              dx,
+              dy,
+              blockW,
+              blockH
+            );
           }
         }
-
-        return combined;
       }
 
-      function applyGlitch(pg) {
-        const w = pg.width;
-        const h = pg.height;
-        const scaleFactor = w / 800;
+      return combined;
+    }
 
-        for (let i = 0; i < 60 * scaleFactor; i++) {
-          const sx = floor(random(w));
-          const sy = floor(random(h));
-          const sw = floor(random(10, 80));
-          const sh = floor(random(3, 30));
-          const dx = sx + floor(random(-80, 80));
-          const dy = sy + floor(random(-50, 50));
-          pg.copy(pg, sx, sy, sw, sh, dx, dy, sw, sh);
-        }
+    function applyGlitch(pg) {
+      const w = pg.width;
+      const h = pg.height;
+      const scaleFactor = w / 800;
 
-        for (let i = 0; i < 15 * scaleFactor; i++) {
-          const y = floor(random(h));
-          const hStrip = floor(random(1, 8));
-          const offset = floor(random(-100, 100));
-          pg.copy(pg, 0, y, w, hStrip, offset, y, w, hStrip);
-        }
-
-        pg.loadPixels();
-        for (let i = 0; i < pg.pixels.length; i += 4) {
-          if (random() < 0.02) {
-            pg.pixels[i] = random(255);
-            pg.pixels[i + 1] = random(100);
-            pg.pixels[i + 2] = random(255);
-          }
-          if (random() < 0.05) {
-            const noise = random(-40, 40);
-            pg.pixels[i] = constrain(pg.pixels[i] + noise, 0, 255);
-            pg.pixels[i + 1] = constrain(pg.pixels[i + 1] + noise, 0, 255);
-            pg.pixels[i + 2] = constrain(pg.pixels[i + 2] + noise, 0, 255);
-          }
-        }
-        pg.updatePixels();
-
-        for (let i = 0; i < 8 * scaleFactor; i++) {
-          const blockSize = floor(random(5, 30));
-          const px = floor(random(0, w - blockSize));
-          const py = floor(random(0, h - blockSize));
-          pg.noStroke();
-          pg.fill(random(255), random(100), random(255), random(100, 200));
-          pg.rect(px, py, blockSize, blockSize);
-        }
+      for (let i = 0; i < 60 * scaleFactor; i++) {
+        const sx = floor(random(w));
+        const sy = floor(random(h));
+        const sw = floor(random(10, 80));
+        const sh = floor(random(3, 30));
+        const dx = sx + floor(random(-80, 80));
+        const dy = sy + floor(random(-50, 50));
+        pg.copy(pg, sx, sy, sw, sh, dx, dy, sw, sh);
       }
 
-      function setupDownloadLink(dataURL) {
-        const link = document.getElementById("downloadLink");
-        link.href = dataURL;
-        link.download = `remix-arte-${Date.now()}.png`;
-        link.style.display = "inline-block";
+      for (let i = 0; i < 15 * scaleFactor; i++) {
+        const y = floor(random(h));
+        const hStrip = floor(random(1, 8));
+        const offset = floor(random(-100, 100));
+        pg.copy(pg, 0, y, w, hStrip, offset, y, w, hStrip);
       }
 
-      const galleryItems = document.querySelectorAll(".gallery-item");
+      pg.loadPixels();
+      for (let i = 0; i < pg.pixels.length; i += 4) {
+        if (random() < 0.02) {
+          pg.pixels[i] = random(255);
+          pg.pixels[i + 1] = random(100);
+          pg.pixels[i + 2] = random(255);
+        }
+        if (random() < 0.05) {
+          const noise = random(-40, 40);
+          pg.pixels[i] = constrain(pg.pixels[i] + noise, 0, 255);
+          pg.pixels[i + 1] = constrain(pg.pixels[i + 1] + noise, 0, 255);
+          pg.pixels[i + 2] = constrain(pg.pixels[i + 2] + noise, 0, 255);
+        }
+      }
+      pg.updatePixels();
 
-      galleryItems.forEach((item) => {
-        item.addEventListener("click", function () {
-          const src = item.getAttribute("src");
-          const lightbox = document.getElementById("lightbox");
-          const lightboxImg = document.getElementById("lightbox-img");
+      for (let i = 0; i < 8 * scaleFactor; i++) {
+        const blockSize = floor(random(5, 30));
+        const px = floor(random(0, w - blockSize));
+        const py = floor(random(0, h - blockSize));
+        pg.noStroke();
+        pg.fill(random(255), random(100), random(255), random(100, 200));
+        pg.rect(px, py, blockSize, blockSize);
+      }
+    }
 
-          lightboxImg.src = src;
-          lightbox.style.display = "flex";
-        });
+    function setupDownloadLink(dataURL) {
+      const link = document.getElementById("downloadLink");
+      link.href = dataURL;
+      link.download = `remix-arte-${Date.now()}.png`;
+      link.style.display = "inline-block";
+    }
+
+    const galleryItems = document.querySelectorAll(".gallery-item");
+
+    galleryItems.forEach((item) => {
+      item.addEventListener("click", function () {
+        const src = item.getAttribute("src");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+
+        lightboxImg.src = src;
+        lightbox.style.display = "flex";
       });
+    });
 
-      document.getElementById("close").addEventListener("click", function () {
-        document.getElementById("lightbox").style.display = "none";
+    document.getElementById("close").addEventListener("click", function () {
+      document.getElementById("lightbox").style.display = "none";
+    });
+
+    document
+      .getElementById("lightbox")
+      .addEventListener("click", function (event) {
+        if (event.target === this) {
+          document.getElementById("lightbox").style.display = "none";
+        }
       });
+  </script>
+</body>
 
-      document
-        .getElementById("lightbox")
-        .addEventListener("click", function (event) {
-          if (event.target === this) {
-            document.getElementById("lightbox").style.display = "none";
-          }
-        });
-    </script>
-  </body>
 </html>
